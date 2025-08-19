@@ -323,9 +323,11 @@ if (typeof WEBGL_RENDERER)
 
             var camera = drawingContext.camera;
 
-            // Add this Game Object to the camera's render list,
-            // because other calls to `addToRenderList` will happen in another camera.
-            camera.addToRenderList(gameObject);
+            // Ordinarily, we would add the game object to the camera's render list here.
+            // But because child objects are added to the filter camera's render list,
+            // we wait for the object to be rendered,
+            // and then take its filter camera's render list
+            // and add it to the drawingContext's render list.
 
             var filtersAutoFocus = gameObject.filtersAutoFocus;
             var filtersFocusContext = gameObject.filtersFocusContext;
@@ -427,6 +429,14 @@ if (typeof WEBGL_RENDERER)
             // Restore scrollFactor.
             gameObject.scrollFactorX = scrollX;
             gameObject.scrollFactorY = scrollY;
+
+            // Add the game object's filter camera's render list
+            // to the drawingContext's render list.
+            var filterRenderListLength = filterCamera.renderList.length;
+            for (var i = 0; i < filterRenderListLength; i++)
+            {
+                camera.addToRenderList(filterCamera.renderList[i]);
+            }
         },
 
         /**
