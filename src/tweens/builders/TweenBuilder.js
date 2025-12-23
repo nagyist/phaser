@@ -155,6 +155,14 @@ var TweenBuilder = function (parent, config, defaults)
         //  Create 1 TweenData per target, per property
         for (var targetIndex = 0; targetIndex < targets.length; targetIndex++)
         {
+            var target = targets[targetIndex];
+
+            //  Skip null or undefined targets
+            if (!target)
+            {
+                continue;
+            }
+
             //  Special-case for scale short-cut:
             if (key === 'scale' && !targets[targetIndex].hasOwnProperty('scale'))
             {
