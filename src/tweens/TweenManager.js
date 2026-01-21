@@ -47,6 +47,12 @@ var TweenChainBuilder = require('./builders/TweenChainBuilder');
  * However, doing so means it's entirely up to _you_ to destroy the tween when you're finished with it,
  * otherwise it will linger in memory forever.
  *
+ * A tween will complete early if its target has `isDestroyed` set to `true`.
+ * This avoids bugs caused by calling methods on a destroyed Game Object,
+ * or any other object with an `isDestroyed` property.
+ * You can still cause bugs when targeting other objects which may change
+ * in the future, so be careful.
+ *
  * If you wish to chain Tweens together for sequential playback, see the `TweenManager.chain` method.
  *
  * @class TweenManager
