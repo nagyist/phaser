@@ -98,6 +98,7 @@ var Phaser = {
     Structs: require('./structs'),
     Textures: require('./textures'),
     Time: require('./time'),
+    TintModes: require('./renderer/TintModes'),
     Tweens: require('./tweens')
 };
 

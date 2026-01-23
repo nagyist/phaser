@@ -9,6 +9,7 @@ var Components = require('../gameobjects/components');
 var CONST = require('./const/ORIENTATION_CONST');
 var DeepCopy = require('../utils/object/DeepCopy');
 var Rectangle = require('../geom/rectangle');
+var TintModes = require('../renderer/TintModes');
 
 /**
  * @classdesc
@@ -305,15 +306,19 @@ var Tile = new Class({
         /**
          * The tint fill mode.
          *
-         * `false` = An additive tint (the default), where vertices colors are blended with the texture.
-         * `true` = A fill tint, where the vertices colors replace the texture, but respects texture alpha.
+         * Available modes are:
+         * - Phaser.TintModes.MULTIPLY (default)
+         * - Phaser.TintModes.FILL
+         * - Phaser.TintModes.ADD
+         * - Phaser.TintModes.SCREEN
+         * - Phaser.TintModes.OVERLAY
          *
          * @name Phaser.Tilemaps.Tile#tintFill
-         * @type {boolean}
+         * @type {Phaser.TintModes}
          * @default
-         * @since 3.70.0
+         * @since 4.0.0
          */
-        this.tintFill = false;
+        this.tintFill = TintModes.MULTIPLY;
 
         /**
          * An empty object where physics-engine specific information (e.g. bodies) may be stored.

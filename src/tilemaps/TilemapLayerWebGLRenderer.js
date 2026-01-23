@@ -4,6 +4,7 @@
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
 
+var TintModes = require('../renderer/TintModes');
 var Utils = require('../renderer/webgl/Utils');
 
 var getTint = Utils.getTintAppendFloatAlpha;
@@ -25,7 +26,7 @@ var texturerData = {
 };
 
 var tinterData = {
-    tintFill: 0,
+    tintEffect: TintModes.MULTIPLY,
     tintTopLeft: 0,
     tintTopRight: 0,
     tintBottomLeft: 0,
@@ -111,7 +112,7 @@ var TilemapLayerWebGLRenderer = function (renderer, src, drawingContext, parentM
         texturerData.uvSource.u1 = (frameX + frameWidth) / texture.width;
         texturerData.uvSource.v1 = 1 - frameY / texture.height;
 
-        tinterData.tintFill = tile.tintFill;
+        tinterData.tintEffect = tile.tintFill;
         tinterData.tintTopLeft = tint;
         tinterData.tintTopRight = tint;
         tinterData.tintBottomLeft = tint;

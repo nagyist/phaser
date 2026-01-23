@@ -81,7 +81,7 @@ var SubmitterTileSprite = new Class({
     {
         this.onRunBegin(drawingContext);
 
-        var tintFill, tintTopLeft, tintBottomLeft, tintTopRight, tintBottomRight;
+        var tintEffect, tintTopLeft, tintBottomLeft, tintTopRight, tintBottomRight;
 
         if (texturerNode.run)
         {
@@ -97,7 +97,7 @@ var SubmitterTileSprite = new Class({
             {
                 tinterNode.run(drawingContext, gameObject, element);
             }
-            tintFill = tinterNode.tintFill;
+            tintEffect = tinterNode.tintEffect;
             tintTopLeft = tinterNode.tintTopLeft;
             tintBottomLeft = tinterNode.tintBottomLeft;
             tintTopRight = tinterNode.tintTopRight;
@@ -105,7 +105,7 @@ var SubmitterTileSprite = new Class({
         }
         else
         {
-            tintFill = gameObject.tintFill;
+            tintEffect = gameObject.tintFill;
             tintTopLeft = getTint(gameObject.tintTopLeft, gameObject._alphaTL);
             tintBottomLeft = getTint(gameObject.tintBottomLeft, gameObject._alphaBL);
             tintTopRight = getTint(gameObject.tintTopRight, gameObject._alphaTR);
@@ -145,7 +145,7 @@ var SubmitterTileSprite = new Class({
             // Texture coordinates in X, Y, Width, Height:
             u0, v0, u1 - u0, v1 - v0,
 
-            tintFill,
+            tintEffect,
 
             // Tint colors in order TL, BL, TR, BR:
             tintTopLeft, tintBottomLeft, tintTopRight, tintBottomRight,

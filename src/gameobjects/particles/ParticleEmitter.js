@@ -33,6 +33,7 @@ var RectangleToRectangle = require('../../geom/intersects/RectangleToRectangle')
 var Remove = require('../../utils/array/Remove');
 var Render = require('./ParticleEmitterRender');
 var StableSort = require('../../utils/array/StableSort');
+var TintModes = require('../../renderer/TintModes');
 var TransformMatrix = require('../components/TransformMatrix');
 var Vector2 = require('../../math/Vector2');
 var Wrap = require('../../math/Wrap');
@@ -384,7 +385,7 @@ var ParticleEmitter = new Class({
          * @since 3.85.0
          */
         this.config = null;
-            
+
         /**
          * An internal object holding all of the EmitterOp instances.
          *
@@ -901,15 +902,19 @@ var ParticleEmitter = new Class({
         /**
          * The tint fill mode used by the Particles in this Emitter.
          *
-         * `false` = An additive tint (the default), where vertices colors are blended with the texture.
-         * `true` = A fill tint, where the vertices colors replace the texture, but respects texture alpha.
+         * Available modes are:
+         * - Phaser.TintModes.MULTIPLY (default)
+         * - Phaser.TintModes.FILL
+         * - Phaser.TintModes.ADD
+         * - Phaser.TintModes.SCREEN
+         * - Phaser.TintModes.OVERLAY
          *
          * @name Phaser.GameObjects.Particles.ParticleEmitter#tintFill
-         * @type {boolean}
-         * @default false
-         * @since 3.60.0
+         * @type {Phaser.TintModes}
+         * @default Phaser.TintModes.MULTIPLY
+         * @since 4.0.0
          */
-        this.tintFill = false;
+        this.tintFill = TintModes.MULTIPLY;
 
         this.initRenderNodes(this._defaultRenderNodesMap);
 
@@ -1113,7 +1118,7 @@ var ParticleEmitter = new Class({
                 this.setConfig(MergeRight(this.config, config));
             }
         }
-        
+
         return this;
     },
 
@@ -3418,11 +3423,10 @@ var ParticleEmitter = new Class({
      * particle. The value should be given in hex format, i.e. 0xff0000
      * for a red tint, and should not include the alpha channel.
      *
-     * Tints are additive, meaning a tint value of white (0xffffff) will
-     * effectively reset the tint to nothing.
+     * Tints are multiplicative by default, meaning a tint value of white
+     * (0xffffff) will effectively reset the tint to nothing.
      *
-     * Modify the `ParticleEmitter.tintFill` property to change between
-     * an additive and replacement tint mode.
+     * Modify the `ParticleEmitter.tintFill` property to change the tint fill mode.
      *
      * When you define the color via the Emitter config you should give
      * it as an array of color values. The Particle will then interpolate
@@ -3483,11 +3487,10 @@ var ParticleEmitter = new Class({
      * particle. The value should be given in hex format, i.e. 0xff0000
      * for a red tint, and should not include the alpha channel.
      *
-     * Tints are additive, meaning a tint value of white (0xffffff) will
-     * effectively reset the tint to nothing.
+     * Tints are multiplicative by default, meaning a tint value of white
+     * (0xffffff) will effectively reset the tint to nothing.
      *
-     * Modify the `ParticleEmitter.tintFill` property to change between
-     * an additive and replacement tint mode.
+     * Modify the `ParticleEmitter.tintFill` property to change the tint fill mode.
      *
      * The `tint` value will be overriden if a `color` array is provided.
      *

@@ -927,7 +927,7 @@ var SpriteGPULayer = new Class({
         f32[offset++] = member.originX === undefined ? 0.5 : member.originX;
         f32[offset++] = member.originY === undefined ? 0.5 : member.originY;
 
-        f32[offset++] = member.tintFill ? 1 : 0;
+        f32[offset++] = member.tintFill || 0;
 
         f32[offset++] = member.creationTime === undefined ? this.timeElapsed : member.creationTime;
 
@@ -1118,7 +1118,7 @@ var SpriteGPULayer = new Class({
 
         member.originX = f32[offset++];
         member.originY = f32[offset++];
-        member.tintFill = !!f32[offset++];
+        member.tintFill = f32[offset++];
         member.creationTime = f32[offset++];
 
         member.scrollFactorX = f32[offset++];
@@ -1297,10 +1297,10 @@ var SpriteGPULayer = new Class({
 
             // Target
             byteOffset + byteLength,
-            
+
             // Source
             byteOffset,
-            
+
             // End
             oldMemberCount * stride
         );

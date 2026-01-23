@@ -9,12 +9,13 @@ var Class = require('../utils/Class');
 var TilemapComponents = require('./components');
 var TilemapLayerRender = require('./TilemapLayerRender');
 var TilemapLayerBase = require('./TilemapLayerBase');
+var TintModes = require('../renderer/TintModes');
 
 /**
  * @classdesc
  * A Tilemap Layer is a Game Object that renders LayerData from a Tilemap when used in combination
  * with one, or more, Tilesets.
- * 
+ *
  * A TilemapLayer can be placed inside a Container, but its physics
  * will work as though it was placed directly in the world.
  * This is rarely what you want.
@@ -379,29 +380,31 @@ var TilemapLayer = new Class({
         var tintTile = function (tile)
         {
             tile.tint = tint;
-            tile.tintFill = false;
         };
 
         return this.forEachTile(tintTile, this, tileX, tileY, width, height, filteringOptions);
     },
 
     /**
-     * Sets a fill-based tint on each Tile within the given area.
+     * Sets the tint fill mode to use when applying the tint to the texture.
      *
-     * Unlike an additive tint, a fill-tint literally replaces the pixel colors from the texture
-     * with those in the tint.
+     * Available modes are:
      *
-     * If no area values are given then all tiles will be tinted to the given color.
+     * - Phaser.TintModes.MULTIPLY (default)
+     * - Phaser.TintModes.FILL
+     * - Phaser.TintModes.ADD
+     * - Phaser.TintModes.SCREEN
+     * - Phaser.TintModes.OVERLAY
      *
-     * To remove a tint call this method with either no parameters, or by passing white `0xffffff` as the tint color.
+     * Call this method with no parameters to reset the tint fill mode to the default.
      *
-     * If a tile already has a tint set then calling this method will override that.
+     * If a tile already has a tint fill mode set then calling this method will override that.
      *
      * @method Phaser.Tilemaps.TilemapLayer#setTintFill
      * @webglOnly
-     * @since 3.70.0
+     * @since 4.0.0
      *
-     * @param {number} [tint=0xffffff] - The tint color being applied to each tile within the region. Given as a hex value, i.e. `0xff0000` for red. Set to white (`0xffffff`) to reset the tint.
+     * @param {Phaser.TintMode} [tintFill=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
      * @param {number} [tileX] - The left most tile index (in tile coordinates) to use as the origin of the area to search.
      * @param {number} [tileY] - The top most tile index (in tile coordinates) to use as the origin of the area to search.
      * @param {number} [width] - How many tiles wide from the `tileX` index the area will be.
@@ -410,14 +413,13 @@ var TilemapLayer = new Class({
      *
      * @return {this} This Tilemap Layer object.
      */
-    setTintFill: function (tint, tileX, tileY, width, height, filteringOptions)
+    setTintFill: function (tintFill, tileX, tileY, width, height, filteringOptions)
     {
-        if (tint === undefined) { tint = 0xffffff; }
+        if (tintFill === undefined) { tintFill = TintModes.MULTIPLY; }
 
         var tintTile = function (tile)
         {
-            tile.tint = tint;
-            tile.tintFill = true;
+            tile.tintFill = tintFill;
         };
 
         return this.forEachTile(tintTile, this, tileX, tileY, width, height, filteringOptions);

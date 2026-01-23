@@ -47,6 +47,7 @@ var Phaser = {
     Textures: require('./textures'),
     Tilemaps: require('./tilemaps'),
     Time: require('./time'),
+    TintModes: require('./renderer/TintModes'),
     Tweens: require('./tweens'),
     Utils: require('./utils')
 

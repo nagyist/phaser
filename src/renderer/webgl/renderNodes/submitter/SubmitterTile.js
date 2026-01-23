@@ -70,7 +70,7 @@ var SubmitterTile = new Class({
     {
         this.onRunBegin(drawingContext);
 
-        var tintFill, tintTopLeft, tintBottomLeft, tintTopRight, tintBottomRight;
+        var tintEffect, tintTopLeft, tintBottomLeft, tintTopRight, tintBottomRight;
 
         if (texturerNode.run)
         {
@@ -86,7 +86,7 @@ var SubmitterTile = new Class({
             {
                 tinterNode.run(drawingContext, gameObject, element);
             }
-            tintFill = tinterNode.tintFill;
+            tintEffect = tinterNode.tintEffect;
             tintTopLeft = tinterNode.tintTopLeft;
             tintBottomLeft = tinterNode.tintBottomLeft;
             tintTopRight = tinterNode.tintTopRight;
@@ -94,7 +94,7 @@ var SubmitterTile = new Class({
         }
         else
         {
-            tintFill = gameObject.tintFill;
+            tintEffect = gameObject.tintFill;
             var tint = 0xffffffff;
             tintTopLeft = tint;
             tintBottomLeft = tint;
@@ -131,7 +131,7 @@ var SubmitterTile = new Class({
             // Texture coordinates in X, Y, Width, Height:
             u0, v0, u1 - u0, v1 - v0,
 
-            tintFill,
+            tintEffect,
 
             // Tint colors in order TL, BL, TR, BR:
             tintTopLeft, tintBottomLeft, tintTopRight, tintBottomRight,

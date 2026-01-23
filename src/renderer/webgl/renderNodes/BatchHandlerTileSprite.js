@@ -178,7 +178,7 @@ var BatchHandlerTileSprite = new Class({
      * @param {number} texY - The top v coordinate (0-1).
      * @param {number} texWidth - The width of the texture (0-1).
      * @param {number} texHeight - The height of the texture (0-1).
-     * @param {boolean} tintFill - Whether to tint the fill color.
+     * @param {Phaser.TintModes} tintFill - The tint fill mode to use.
      * @param {number} tintTL - The tint color for the top-left corner.
      * @param {number} tintBL - The tint color for the bottom-left corner.
      * @param {number} tintTR - The tint color for the top-right corner.

@@ -38,6 +38,7 @@ export const Sound = require('./sound');
 export const Textures = require('./textures');
 export const Tilemaps = require('./tilemaps');
 export const Time = require('./time');
+export const TintModes = require('./renderer/TintModes');
 export const Tweens = require('./tweens');
 export const Utils = require('./utils');
 

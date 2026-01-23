@@ -114,6 +114,7 @@ export class Parser {
 
                 //  Because, sod you TypeScript
                 case 'Phaser.BlendModes':
+                case 'Phaser.TintModes':
                 case 'Phaser.ScaleModes':
                 case 'Phaser.Physics.Impact.TYPE':
                 case 'Phaser.Physics.Impact.COLLIDES':

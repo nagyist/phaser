@@ -634,7 +634,7 @@ var BatchHandlerQuad = new Class({
      * @param {number} texY - The top v coordinate (0-1).
      * @param {number} texWidth - The width of the texture (0-1).
      * @param {number} texHeight - The height of the texture (0-1).
-     * @param {boolean} tintFill - Whether to tint the fill color.
+     * @param {number} tintFill - The tint fill mode to use.
      * @param {number} tintTL - The top-left tint color.
      * @param {number} tintBL - The bottom-left tint color.
      * @param {number} tintTR - The top-right tint color.

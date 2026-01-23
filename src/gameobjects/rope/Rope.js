@@ -10,6 +10,7 @@ var Class = require('../../utils/Class');
 var Components = require('../components');
 var GameObject = require('../GameObject');
 var RopeRender = require('./RopeRender');
+var TintModes = require('../../renderer/TintModes');
 var Vector2 = require('../../math/Vector2');
 
 /**
@@ -168,16 +169,21 @@ var Rope = new Class({
         this.alphas;
 
         /**
-         * The tint fill mode.
+         * The tint fill mode to use when applying the tint to the texture.
          *
-        * `false` = An additive tint (the default), where vertices colors are blended with the texture.
-        * `true` = A fill tint, where the vertices colors replace the texture, but respects texture alpha.
+         * Available modes are:
+         * - Phaser.TintModes.MULTIPLY (default)
+         * - Phaser.TintModes.FILL (default when the texture is __DEFAULT)
+         * - Phaser.TintModes.ADD
+         * - Phaser.TintModes.SCREEN
+         * - Phaser.TintModes.OVERLAY
          *
          * @name Phaser.GameObjects.Rope#tintFill
-         * @type {boolean}
-         * @since 3.23.0
+         * @type {Phaser.TintModes}
+         * @default Phaser.TintModes.MULTIPLY
+         * @since 4.0.0
          */
-        this.tintFill = (texture === '__DEFAULT') ? true : false;
+        this.tintFill = (texture === '__DEFAULT') ? TintModes.FILL : TintModes.MULTIPLY;
 
         /**
          * If the Rope is marked as `dirty` it will automatically recalculate its vertices
@@ -437,28 +443,28 @@ var Rope = new Class({
     },
 
     /**
-     * Sets the tint fill mode.
+     * Sets the tint fill mode to use when applying the tint to the texture.
      *
-     * Mode 0 (`false`) is an additive tint, the default, which blends the vertices colors with the texture.
-     * This mode respects the texture alpha.
-     *
-     * Mode 1 (`true`) is a fill tint. Unlike an additive tint, a fill-tint literally replaces the pixel colors
-     * from the texture with those in the tint. You can use this for effects such as making a player flash 'white'
-     * if hit by something. This mode respects the texture alpha.
+     * Available modes are:
+     * - Phaser.TintModes.MULTIPLY (default)
+     * - Phaser.TintModes.FILL
+     * - Phaser.TintModes.ADD
+     * - Phaser.TintModes.SCREEN
+     * - Phaser.TintModes.OVERLAY
      *
      * See the `setColors` method for details of how to color each of the vertices.
      *
      * @method Phaser.GameObjects.Rope#setTintFill
      * @webglOnly
-     * @since 3.23.0
+     * @since 4.0.0
      *
-     * @param {boolean} [value=false] - Set to `false` for an Additive tint or `true` fill tint with alpha.
+     * @param {Phaser.TintModes} [value=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
      *
      * @return {this} This Game Object instance.
      */
     setTintFill: function (value)
     {
-        if (value === undefined) { value = false; }
+        if (value === undefined) { value = TintModes.MULTIPLY; }
 
         this.tintFill = value;
 

@@ -14,6 +14,7 @@ var ParseFromAtlas = require('../ParseFromAtlas');
 var ParseXMLBitmapFont = require('../ParseXMLBitmapFont');
 var Rectangle = require('../../../geom/rectangle/Rectangle');
 var Render = require('./BitmapTextRender');
+var TintModes = require('../../../renderer/TintModes');
 
 /**
  * @classdesc
@@ -525,12 +526,18 @@ var BitmapText = new Class({
      *
      * This is a WebGL only feature and only works with Static Bitmap Text, not Dynamic.
      *
-     * The tint works by taking the pixel color values from the Bitmap Text texture, and then
-     * multiplying it by the color value of the tint. You can provide either one color value,
+     * The tint applies a color to the pixel color values
+     * from the Bitmap Text texture in one of several modes:
+     *
+     * - Phaser.TintModes.MULTIPLY (default)
+     * - Phaser.TintModes.FILL
+     * - Phaser.TintModes.ADD
+     * - Phaser.TintModes.SCREEN
+     * - Phaser.TintModes.OVERLAY
+     *
+     * You can provide either one color value,
      * in which case the whole character will be tinted in that color. Or you can provide a color
      * per corner. The colors are blended together across the extent of the character range.
-     *
-     * To swap this from being an additive tint to a fill based tint, set the `tintFill` parameter to `true`.
      *
      * To modify the tint color once set, call this method again with new color values.
      *
@@ -544,7 +551,7 @@ var BitmapText = new Class({
      *
      * @param {number} [start=0] - The starting character to begin the tint at. If negative, it counts back from the end of the text.
      * @param {number} [length=1] - The number of characters to tint. Remember that spaces count as a character too. Pass -1 to tint all characters from `start` onwards.
-     * @param {boolean} [tintFill=false] - Use a fill-based tint (true), or an additive tint (false)
+     * @param {number} [tintFill=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
      * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the character. If not other values are given this value is applied evenly, tinting the whole character.
      * @param {number} [topRight] - The tint being applied to the top-right of the character.
      * @param {number} [bottomLeft] - The tint being applied to the bottom-left of the character.
@@ -556,7 +563,7 @@ var BitmapText = new Class({
     {
         if (start === undefined) { start = 0; }
         if (length === undefined) { length = 1; }
-        if (tintFill === undefined) { tintFill = false; }
+        if (tintFill === undefined) { tintFill = TintModes.MULTIPLY; }
         if (topLeft === undefined) { topLeft = -1; }
 
         if (topRight === undefined)
@@ -594,7 +601,7 @@ var BitmapText = new Class({
             }
             else
             {
-                var tintEffect = (tintFill) ? 1 : 0;
+                var tintEffect = tintFill;
 
                 if (color)
                 {
@@ -636,12 +643,18 @@ var BitmapText = new Class({
      *
      * This is a WebGL only feature and only works with Static Bitmap Text, not Dynamic.
      *
-     * The tint works by taking the pixel color values from the Bitmap Text texture, and then
-     * multiplying it by the color value of the tint. You can provide either one color value,
+     * The tint applies a color to the pixel color values
+     * from the Bitmap Text texture in one of several modes:
+     *
+     * - Phaser.TintModes.MULTIPLY (default)
+     * - Phaser.TintModes.FILL
+     * - Phaser.TintModes.ADD
+     * - Phaser.TintModes.SCREEN
+     * - Phaser.TintModes.OVERLAY
+     *
+     * You can provide either one color value,
      * in which case the whole character will be tinted in that color. Or you can provide a color
      * per corner. The colors are blended together across the extent of the character range.
-     *
-     * To swap this from being an additive tint to a fill based tint, set the `tintFill` parameter to `true`.
      *
      * To modify the tint color once set, call this method again with new color values.
      *
@@ -653,7 +666,7 @@ var BitmapText = new Class({
      *
      * @param {(string|number)} word - The word to search for. Either a string, or an index of the word in the words array.
      * @param {number} [count=1] - The number of matching words to tint. Pass -1 to tint all matching words.
-     * @param {boolean} [tintFill=false] - Use a fill-based tint (true), or an additive tint (false)
+     * @param {number} [tintFill=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
      * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the word. If not other values are given this value is applied evenly, tinting the whole word.
      * @param {number} [topRight] - The tint being applied to the top-right of the word.
      * @param {number} [bottomLeft] - The tint being applied to the bottom-left of the word.
