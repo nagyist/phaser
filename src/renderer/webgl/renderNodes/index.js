@@ -42,6 +42,7 @@ var RenderNodes = {
     FilterImageLight: require('./filters/FilterImageLight'),
     FilterKey: require('./filters/FilterKey'),
     FilterMask: require('./filters/FilterMask'),
+    FilterNormalTools: require('./filters/FilterNormalTools'),
     FilterPanoramaBlur: require('./filters/FilterPanoramaBlur'),
     FilterParallelFilters: require('./filters/FilterParallelFilters'),
     FilterPixelate: require('./filters/FilterPixelate'),

@@ -16,6 +16,7 @@ var Glow = require('../../filters/Glow');
 var ImageLight = require('../../filters/ImageLight');
 var Key = require('../../filters/Key');
 var Mask = require('../../filters/Mask');
+var NormalTools = require('../../filters/NormalTools');
 var PanoramaBlur = require('../../filters/PanoramaBlur');
 var ParallelFilters = null;
 var Pixelate = require('../../filters/Pixelate');
@@ -444,6 +445,9 @@ var FilterList = new Class({
      * The effect is basically a reflection of the environment at infinite range.
      * A sharp environment map will produce a sharp reflection,
      * while a blurry environment map will produce a diffuse reflection.
+     * Use the PanoramaBlur filter to create correctly blurred environment maps.
+     * Use the NormalTools filter to manipulate the normal map if necessary,
+     * using a DynamicTexture to capture the output.
      *
      * @method Phaser.GameObjects.Components.FilterList#addImageLight
      * @since 4.0.0
@@ -532,6 +536,46 @@ var FilterList = new Class({
             viewTransform,
             scaleFactor
         ));
+    },
+
+    /**
+     * Adds a NormalTools effect.
+     *
+     * NormalTools is a filter for manipulating the normals of a normal map.
+     * It has several functions:
+     *
+     * - Rotate or reorient the normal map.
+     * - Change how strongly the normals face the camera.
+     * - Output a grayscale texture showing how strongly the normals face the camera, or some other vector.
+     *
+     * The output can be used for various purposes, such as:
+     *
+     * - Editing a normal map for special applications.
+     * - Altering the apparent visual depth of a normal map by manipulating the facing power.
+     * - Creating a base for other effects, such as a mask for a gradient or other effect.
+     *
+     * You can even use the output as a normal map for regular lighting.
+     * Ordinarily, normal maps are loaded alongside the main texture,
+     * but you can edit this.
+     *
+     * ```js
+     * // Given a dynamic texture `dyn` where the filter output is drawn,
+     * // and a texture `spiderTex` with lighting enabled,
+     * // we can inject the WebGL texture straight into the scene lighting as a normal map.
+     * const dynTex = dyn.getWebGLTexture();
+     * const dynSource = new Phaser.Textures.TextureSource(spiderTex, dynTex);
+     * spiderTex.dataSource[0] = dynSource; // This is where the normal map is located.
+     * ```
+     *
+     * @method Phaser.GameObjects.Components.FilterList#addNormalTools
+     * @since 4.0.0
+     *
+     * @param {Phaser.Types.Filters.NormalToolsConfig} config
+     * @returns {Phaser.Filters.NormalTools} The new NormalTools filter controller.
+     */
+    addNormalTools: function (config)
+    {
+        return this.add(new NormalTools(this.camera, config));
     },
 
     /**

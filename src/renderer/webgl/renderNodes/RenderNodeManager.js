@@ -40,6 +40,7 @@ var FilterGlow = require('./filters/FilterGlow');
 var FilterImageLight = require('./filters/FilterImageLight');
 var FilterKey = require('./filters/FilterKey');
 var FilterMask = require('./filters/FilterMask');
+var FilterNormalTools = require('./filters/FilterNormalTools');
 var FilterPanoramaBlur = require('./filters/FilterPanoramaBlur');
 var FilterParallelFilters = require('./filters/FilterParallelFilters');
 var FilterPixelate = require('./filters/FilterPixelate');
@@ -177,6 +178,7 @@ var RenderNodeManager = new Class({
             FilterImageLight: FilterImageLight,
             FilterKey: FilterKey,
             FilterMask: FilterMask,
+            FilterNormalTools: FilterNormalTools,
             FilterPanoramaBlur: FilterPanoramaBlur,
             FilterParallelFilters: FilterParallelFilters,
             FilterPixelate: FilterPixelate,
