@@ -48,6 +48,7 @@ var FilterPixelate = require('./filters/FilterPixelate');
 var FilterSampler = require('./filters/FilterSampler');
 var FilterShadow = require('./filters/FilterShadow');
 var FilterThreshold = require('./filters/FilterThreshold');
+var FilterWipe = require('./filters/FilterWipe');
 
 var ListCompositor = require('./ListCompositor');
 var RebindContext = require('./RebindContext');
@@ -187,6 +188,7 @@ var RenderNodeManager = new Class({
             FilterSampler: FilterSampler,
             FilterShadow: FilterShadow,
             FilterThreshold: FilterThreshold,
+            FilterWipe: FilterWipe,
 
             ListCompositor: ListCompositor,
             RebindContext: RebindContext,

@@ -24,6 +24,7 @@ var Pixelate = require('../../filters/Pixelate');
 var Sampler = require('../../filters/Sampler');
 var Shadow = require('../../filters/Shadow');
 var Threshold = require('../../filters/Threshold');
+var Wipe = require('../../filters/Wipe');
 
 /**
  * @classdesc
@@ -827,6 +828,40 @@ var FilterList = new Class({
             blurY,
             strength
         ));
+    },
+
+    /**
+     * Adds a Wipe effect.
+     *
+     * The wipe or reveal effect is a visual technique that gradually uncovers or conceals elements
+     * in the game, such as images, text, or scene transitions. This effect is often used to create
+     * a sense of progression, reveal hidden content, or provide a smooth and visually appealing transition
+     * between game states.
+     *
+     * You can set both the direction and the axis of the wipe effect. The following combinations are possible:
+     *
+     * * left to right: direction 0, axis 0
+     * * right to left: direction 1, axis 0
+     * * top to bottom: direction 1, axis 1
+     * * bottom to top: direction 1, axis 0
+     *
+     * It is up to you to set the `progress` value yourself, e.g. via a Tween, in order to transition the effect.
+     *
+     * @method Phaser.GameObjects.Components.FilterList#addWipe
+     * @since 4.0.0
+     *
+     * @param {Phaser.Cameras.Scene2D.Camera} camera - The camera that owns this filter.
+     * @param {number} [wipeWidth=0.1] - The width of the wipe effect. This value is normalized in the range 0 to 1.
+     * @param {number} [direction=0] - The direction of the wipe effect. Either 0 (left to right, or top to bottom) or 1 (right to left, or bottom to top). Set in conjunction with the axis property.
+     * @param {number} [axis=0] - The axis of the wipe effect. Either 0 (X) or 1 (Y). Set in conjunction with the direction property.
+     * @param {number} [reveal=0] - Is this a reveal (1) or a fade (0) effect? Reveal shows the input in wiped areas; fade shows the input in unwiped areas.
+     * @param {string | Phaser.Textures.Texture} [wipeTexture='__DEFAULT'] - Texture or texture key to use where the input texture is not shown. The default texture is blank. Use another texture for a wipe transition.
+     *
+     * @returns {Phaser.Filters.Wipe} - The new Wipe filter instance.
+     */
+    addWipe: function (wipeWidth, direction, axis, reveal, wipeTexture)
+    {
+        return this.add(new Wipe(this.camera, wipeWidth, direction, axis, reveal, wipeTexture));
     },
 
     /**

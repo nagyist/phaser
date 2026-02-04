@@ -33,6 +33,7 @@ var ColorMatrix = require('../display/ColorMatrix');
  * @constructor
  * @since 4.0.0
  * @param {Phaser.Cameras.Scene2D.Camera} camera - The camera that owns this filter.
+ * @param {string | Phaser.Textures.Texture} [texture='__WHITE'] - The texture or texture key to use for the transfer texture.
  */
 var CombineColorMatrix = new Class({
     Extends: Controller,
