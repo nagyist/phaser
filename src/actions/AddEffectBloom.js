@@ -26,9 +26,23 @@ var BlendModes = require('../renderer/BlendModes');
  * e.g. if you want to animate the Bloom,
  * or if you want to set properties this Action doesn't surface.
  *
+ * The Bloom effect will be destroyed like any other filter on target shutdown.
+ * To disable or remove the Bloom effect manually, access the `parallelFilters`
+ * controller in the return object. It holds the other filters.
+ *
+ * - `parallelFilters.active = false`: deactivate Bloom
+ * - `parallelFilters.destroy()`: destroy Bloom
+ *
  * @example
  * // Apply bloom to the scene camera.
  * Phaser.Actions.AddEffectBloom(this.cameras.main);
+ *
+ * @example
+ * // Access the filters that make up a Bloom effect.
+ * const { parallelFilters, threshold, blur } = Phaser.Actions.AddEffectBloom(this.cameras.main);
+ *
+ * // Destroy the bloom effect.
+ * parallelFilters.destroy();
  *
  * @function Phaser.Actions.AddEffectBloom
  * @since 4.0.0
