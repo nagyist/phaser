@@ -170,6 +170,22 @@ var Tint = {
     },
 
     /**
+     * Deprecated method which does nothing.
+     * In Phaser 3, this would set the tint color, and set the tint mode to fill.
+     * In Phaser 4, use `gameObject.setTint(color).setTintMode(Phaser.TintModes.FILL)` instead.
+     *
+     * @method Phaser.GameObjects.Components.Tint#setTintFill
+     * @webglOnly
+     * @since 3.11.0
+     * @deprecated
+     */
+    setTintFill: function ()
+    {
+        // eslint-disable-next-line no-console
+        console.error('`setTintFill(color)` is removed as of Phaser 4. Use setTint(color).setTintMode(Phaser.TintModes.FILL)` instead.');
+    },
+
+    /**
      * The tint value being applied to the whole of the Game Object.
      * Return `tintTopLeft` when read this tint property.
      *
