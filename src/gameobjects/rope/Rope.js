@@ -169,7 +169,7 @@ var Rope = new Class({
         this.alphas;
 
         /**
-         * The tint fill mode to use when applying the tint to the texture.
+         * The tint mode to use when applying the tint to the texture.
          *
          * Available modes are:
          * - Phaser.TintModes.MULTIPLY (default)
@@ -179,12 +179,12 @@ var Rope = new Class({
          * - Phaser.TintModes.OVERLAY
          * - Phaser.TintModes.HARD_LIGHT
          *
-         * @name Phaser.GameObjects.Rope#tintFill
+         * @name Phaser.GameObjects.Rope#tintMode
          * @type {Phaser.TintModes}
          * @default Phaser.TintModes.MULTIPLY
          * @since 4.0.0
          */
-        this.tintFill = (texture === '__DEFAULT') ? TintModes.FILL : TintModes.MULTIPLY;
+        this.tintMode = (texture === '__DEFAULT') ? TintModes.FILL : TintModes.MULTIPLY;
 
         /**
          * If the Rope is marked as `dirty` it will automatically recalculate its vertices
@@ -444,7 +444,7 @@ var Rope = new Class({
     },
 
     /**
-     * Sets the tint fill mode to use when applying the tint to the texture.
+     * Sets the tint mode to use when applying the tint to the texture.
      *
      * Available modes are:
      * - Phaser.TintModes.MULTIPLY (default)
@@ -456,19 +456,19 @@ var Rope = new Class({
      *
      * See the `setColors` method for details of how to color each of the vertices.
      *
-     * @method Phaser.GameObjects.Rope#setTintFill
+     * @method Phaser.GameObjects.Rope#setTintMode
      * @webglOnly
      * @since 4.0.0
      *
-     * @param {Phaser.TintModes} [value=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
+     * @param {Phaser.TintModes} [value=Phaser.TintModes.MULTIPLY] - The tint mode to use.
      *
      * @return {this} This Game Object instance.
      */
-    setTintFill: function (value)
+    setTintMode: function (value)
     {
         if (value === undefined) { value = TintModes.MULTIPLY; }
 
-        this.tintFill = value;
+        this.tintMode = value;
 
         return this;
     },

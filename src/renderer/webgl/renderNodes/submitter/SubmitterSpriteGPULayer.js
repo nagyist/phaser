@@ -262,7 +262,7 @@ var SubmitterSpriteGPULayer = new Class({
                     normalized: true
                 },
                 {
-                    name: 'inOriginAndTintFillAndCreationTime',
+                    name: 'inOriginAndTintModeAndCreationTime',
                     size: 4
                 },
                 {

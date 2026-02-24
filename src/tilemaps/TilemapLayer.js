@@ -386,7 +386,7 @@ var TilemapLayer = new Class({
     },
 
     /**
-     * Sets the tint fill mode to use when applying the tint to the texture.
+     * Sets the tint mode to use when applying the tint to the texture.
      *
      * Available modes are:
      *
@@ -397,15 +397,15 @@ var TilemapLayer = new Class({
      * - Phaser.TintModes.OVERLAY
      * - Phaser.TintModes.HARD_LIGHT
      *
-     * Call this method with no parameters to reset the tint fill mode to the default.
+     * Call this method with no parameters to reset the tint mode to the default.
      *
-     * If a tile already has a tint fill mode set then calling this method will override that.
+     * If a tile already has a tint mode set then calling this method will override that.
      *
-     * @method Phaser.Tilemaps.TilemapLayer#setTintFill
+     * @method Phaser.Tilemaps.TilemapLayer#setTintMode
      * @webglOnly
      * @since 4.0.0
      *
-     * @param {Phaser.TintMode} [tintFill=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
+     * @param {Phaser.TintMode} [tintMode=Phaser.TintModes.MULTIPLY] - The tint mode to use.
      * @param {number} [tileX] - The left most tile index (in tile coordinates) to use as the origin of the area to search.
      * @param {number} [tileY] - The top most tile index (in tile coordinates) to use as the origin of the area to search.
      * @param {number} [width] - How many tiles wide from the `tileX` index the area will be.
@@ -414,13 +414,13 @@ var TilemapLayer = new Class({
      *
      * @return {this} This Tilemap Layer object.
      */
-    setTintFill: function (tintFill, tileX, tileY, width, height, filteringOptions)
+    setTintMode: function (tintMode, tileX, tileY, width, height, filteringOptions)
     {
-        if (tintFill === undefined) { tintFill = TintModes.MULTIPLY; }
+        if (tintMode === undefined) { tintMode = TintModes.MULTIPLY; }
 
         var tintTile = function (tile)
         {
-            tile.tintFill = tintFill;
+            tile.tintMode = tintMode;
         };
 
         return this.forEachTile(tintTile, this, tileX, tileY, width, height, filteringOptions);

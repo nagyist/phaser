@@ -76,15 +76,15 @@ var Tint = {
      * - Phaser.TintModes.OVERLAY
      * - Phaser.TintModes.HARD_LIGHT
      *
-     * Note that in Phaser 3, this was a boolean.
-     * It is now a number, with MULTIPLY and FILL corresponding to false and true respectively.
+     * Note that in Phaser 3, tint mode and color were set at the same time.
+     * In Phaser 4 they are separate settings.
      *
-     * @name Phaser.GameObjects.Components.Tint#tintFill
+     * @name Phaser.GameObjects.Components.Tint#tintMode
      * @type {number}
      * @default Phaser.TintModes.MULTIPLY
      * @since 4.0.0
      */
-    tintFill: TintModes.MULTIPLY,
+    tintMode: TintModes.MULTIPLY,
 
     /**
      * Clears all tint values associated with this Game Object.
@@ -101,7 +101,7 @@ var Tint = {
     clearTint: function ()
     {
         this.setTint(0xffffff);
-        this.setTintFill(TintModes.MULTIPLY);
+        this.setTintMode(TintModes.MULTIPLY);
 
         return this;
     },
@@ -151,21 +151,21 @@ var Tint = {
     },
 
     /**
-     * Sets the tint fill mode to use when applying the tint to the texture.
+     * Sets the tint mode to use when applying the tint to the texture.
      *
-     * Note that in Phaser 3, this set a boolean and set the tint colors.
-     * It is now solely responsible for setting the tint fill mode.
+     * Note that, in Phaser 3, tint mode and color were set at the same time.
+     * In Phaser 4 they are separate settings.
      *
-     * @method Phaser.GameObjects.Components.Tint#setTintFill
+     * @method Phaser.GameObjects.Components.Tint#setTintMode
      * @webglOnly
      * @since 4.0.0
      *
      * @param {number} mode - The tint mode to use.
      * @returns {this} This Game Object instance.
      */
-    setTintFill: function (mode)
+    setTintMode: function (mode)
     {
-        this.tintFill = mode;
+        this.tintMode = mode;
         return this;
     },
 
@@ -195,7 +195,7 @@ var Tint = {
      * Does this Game Object have a tint applied?
      *
      * It checks to see if the 4 tint properties are set to the value 0xffffff
-     * and that the `tintFill` property is `MULTIPLY`.
+     * and that the `tintMode` property is `MULTIPLY`.
      * This indicates that a Game Object isn't tinted.
      *
      * @name Phaser.GameObjects.Components.Tint#isTinted
@@ -211,7 +211,7 @@ var Tint = {
             var white = 0xffffff;
 
             return (
-                this.tintFill !== TintModes.MULTIPLY ||
+                this.tintMode !== TintModes.MULTIPLY ||
                 this.tintTopLeft !== white ||
                 this.tintTopRight !== white ||
                 this.tintBottomLeft !== white ||

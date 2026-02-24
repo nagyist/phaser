@@ -68,7 +68,7 @@ var configFastMap = [
     'sortOrderAsc',
     'sortProperty',
     'stopAfter',
-    'tintFill',
+    'tintMode',
     'timeScale',
     'trackVisible',
     'visible'
@@ -900,7 +900,7 @@ var ParticleEmitter = new Class({
         this.processors = new List(this);
 
         /**
-         * The tint fill mode used by the Particles in this Emitter.
+         * The tint mode used by the Particles in this Emitter.
          *
          * Available modes are:
          * - Phaser.TintModes.MULTIPLY (default)
@@ -910,12 +910,12 @@ var ParticleEmitter = new Class({
          * - Phaser.TintModes.OVERLAY
          * - Phaser.TintModes.HARD_LIGHT
          *
-         * @name Phaser.GameObjects.Particles.ParticleEmitter#tintFill
+         * @name Phaser.GameObjects.Particles.ParticleEmitter#tintMode
          * @type {Phaser.TintModes}
          * @default Phaser.TintModes.MULTIPLY
          * @since 4.0.0
          */
-        this.tintFill = TintModes.MULTIPLY;
+        this.tintMode = TintModes.MULTIPLY;
 
         this.initRenderNodes(this._defaultRenderNodesMap);
 
@@ -3427,7 +3427,7 @@ var ParticleEmitter = new Class({
      * Tints are multiplicative by default, meaning a tint value of white
      * (0xffffff) will effectively reset the tint to nothing.
      *
-     * Modify the `ParticleEmitter.tintFill` property to change the tint fill mode.
+     * Modify the `ParticleEmitter.tintMode` property to change the tint mode.
      *
      * When you define the color via the Emitter config you should give
      * it as an array of color values. The Particle will then interpolate
@@ -3491,7 +3491,7 @@ var ParticleEmitter = new Class({
      * Tints are multiplicative by default, meaning a tint value of white
      * (0xffffff) will effectively reset the tint to nothing.
      *
-     * Modify the `ParticleEmitter.tintFill` property to change the tint fill mode.
+     * Modify the `ParticleEmitter.tintMode` property to change the tint mode.
      *
      * The `tint` value will be overriden if a `color` array is provided.
      *

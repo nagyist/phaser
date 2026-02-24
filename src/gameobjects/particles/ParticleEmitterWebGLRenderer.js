@@ -73,7 +73,7 @@ var ParticleEmitterWebGLRenderer = function (renderer, emitter, drawingContext, 
         emitter.depthSort();
     }
 
-    var tintEffect = emitter.tintFill;
+    var tintEffect = emitter.tintMode;
 
     for (var i = 0; i < particleCount; i++)
     {

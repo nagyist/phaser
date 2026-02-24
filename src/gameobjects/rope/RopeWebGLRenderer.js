@@ -60,7 +60,7 @@ var RopeWebGLRenderer = function (renderer, src, drawingContext, parentMatrix)
         src.colors,
         src.alphas,
         src.alpha,
-        src.tintFill,
+        src.tintMode,
         renderOptions,
         src.debugCallback
     );

@@ -178,7 +178,7 @@ var BatchHandlerTileSprite = new Class({
      * @param {number} texY - The top v coordinate (0-1).
      * @param {number} texWidth - The width of the texture (0-1).
      * @param {number} texHeight - The height of the texture (0-1).
-     * @param {Phaser.TintModes} tintFill - The tint fill mode to use.
+     * @param {Phaser.TintModes} tintMode - The tint mode to use.
      * @param {number} tintTL - The tint color for the top-left corner.
      * @param {number} tintBL - The tint color for the bottom-left corner.
      * @param {number} tintTR - The tint color for the top-right corner.
@@ -202,7 +202,7 @@ var BatchHandlerTileSprite = new Class({
         x3, y3,
         texX, texY,
         texWidth, texHeight,
-        tintFill,
+        tintMode,
         tintTL, tintBL, tintTR, tintBR,
         renderOptions,
         u0, v0, u1, v1, u2, v2, u3, v3
@@ -240,7 +240,7 @@ var BatchHandlerTileSprite = new Class({
         vertexViewF32[vertexOffset32++] = texWidth;
         vertexViewF32[vertexOffset32++] = texHeight;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintBL;
 
         // Top-left
@@ -253,7 +253,7 @@ var BatchHandlerTileSprite = new Class({
         vertexViewF32[vertexOffset32++] = texWidth;
         vertexViewF32[vertexOffset32++] = texHeight;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintTL;
 
         // Bottom-right
@@ -266,7 +266,7 @@ var BatchHandlerTileSprite = new Class({
         vertexViewF32[vertexOffset32++] = texWidth;
         vertexViewF32[vertexOffset32++] = texHeight;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintBR;
 
         // Top-right
@@ -279,7 +279,7 @@ var BatchHandlerTileSprite = new Class({
         vertexViewF32[vertexOffset32++] = texWidth;
         vertexViewF32[vertexOffset32++] = texHeight;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintTR;
 
         // Increment the instance count.

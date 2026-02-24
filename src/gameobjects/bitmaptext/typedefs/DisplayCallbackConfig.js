@@ -4,7 +4,7 @@
  *
  * @property {Phaser.GameObjects.DynamicBitmapText} parent - The Dynamic Bitmap Text object that owns this character being rendered.
  * @property {Phaser.Types.GameObjects.BitmapText.TintConfig} tint - The tint of the character being rendered. Always zero in Canvas.
- * @property {Phaser.TintModes} tintFill - The tint fill mode of the character being rendered.
+ * @property {Phaser.TintModes} tintMode - The tint mode of the character being rendered.
  * @property {number} index - The index of the character being rendered.
  * @property {number} charCode - The character code of the character being rendered.
  * @property {number} x - The x position of the character being rendered.

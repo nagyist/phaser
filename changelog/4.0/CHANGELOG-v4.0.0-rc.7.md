@@ -37,8 +37,9 @@
 - `Tint` is overhauled.
   - `tint` and `setTint()` now purely affect the color settings.
     - Previously, both would silently deactivate fill mode.
-  - `tintFill` and `setTintFill()` now set the tint fill mode, not fill color.
-  - `Phaser.TintModes` enumerates valid tint fill modes.
+  - `tintFill` and `setTintFill()` are removed.
+  - New property `tintMode` and new method `setTintMode()` now set the tint fill mode.
+  - `Phaser.TintModes` enumerates valid tint modes.
     - `MULTIPLY`
     - `FILL`
     - `ADD`
@@ -47,6 +48,7 @@
     - `HARD_LIGHT`
   - FILL mode now treats partial alpha correctly.
   - BitmapText tinting now works correctly.
+  - Conversion tip: `foo.setTintFill(color)` becomes `foo.setTint(color).setTintMode(Phaser.TintModes.FILL)`.
 - `CombineColorMatrix` filter for remixing alpha and other channels between images.
 - `GradientMap` filter for recoloring images using a gradient and their own brightness.
 - `Key` filter for removing or isolating colors.

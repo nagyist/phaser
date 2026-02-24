@@ -105,7 +105,7 @@ var SubmitterTileSprite = new Class({
         }
         else
         {
-            tintEffect = gameObject.tintFill;
+            tintEffect = gameObject.tintMode;
             tintTopLeft = getTint(gameObject.tintTopLeft, gameObject._alphaTL);
             tintBottomLeft = getTint(gameObject.tintBottomLeft, gameObject._alphaBL);
             tintTopRight = getTint(gameObject.tintTopRight, gameObject._alphaTR);

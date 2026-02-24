@@ -304,7 +304,7 @@ var Tile = new Class({
         this.tint = 0xffffff;
 
         /**
-         * The tint fill mode.
+         * The tint mode.
          *
          * Available modes are:
          * - Phaser.TintModes.MULTIPLY (default)
@@ -314,12 +314,12 @@ var Tile = new Class({
          * - Phaser.TintModes.OVERLAY
          * - Phaser.TintModes.HARD_LIGHT
          *
-         * @name Phaser.Tilemaps.Tile#tintFill
+         * @name Phaser.Tilemaps.Tile#tintMode
          * @type {Phaser.TintModes}
          * @default
          * @since 4.0.0
          */
-        this.tintFill = TintModes.MULTIPLY;
+        this.tintMode = TintModes.MULTIPLY;
 
         /**
          * An empty object where physics-engine specific information (e.g. bodies) may be stored.

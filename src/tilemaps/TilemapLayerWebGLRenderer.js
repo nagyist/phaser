@@ -112,7 +112,7 @@ var TilemapLayerWebGLRenderer = function (renderer, src, drawingContext, parentM
         texturerData.uvSource.u1 = (frameX + frameWidth) / texture.width;
         texturerData.uvSource.v1 = 1 - frameY / texture.height;
 
-        tinterData.tintEffect = tile.tintFill;
+        tinterData.tintEffect = tile.tintMode;
         tinterData.tintTopLeft = tint;
         tinterData.tintTopRight = tint;
         tinterData.tintBottomLeft = tint;

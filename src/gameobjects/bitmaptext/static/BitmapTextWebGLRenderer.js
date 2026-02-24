@@ -59,7 +59,7 @@ var BitmapTextWebGLRenderer = function (renderer, src, drawingContext, parentMat
 
     var getTint = Utils.getTintAppendFloatAlpha;
 
-    tempTintData1.tintEffect = src.tintFill;
+    tempTintData1.tintEffect = src.tintMode;
     tempTintData1.tintTopLeft = getTint(src.tintTopLeft, src._alphaTL);
     tempTintData1.tintTopRight = getTint(src.tintTopRight, src._alphaTR);
     tempTintData1.tintBottomLeft = getTint(src.tintBottomLeft, src._alphaBL);

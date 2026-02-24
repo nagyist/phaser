@@ -142,7 +142,7 @@ var BatchHandlerStrip = new Class({
      * @param {Uint32Array} colors - The color values of the strip.
      * @param {Float32Array} alphas - The alpha values of the strip.
      * @param {number} alpha - The overall alpha value of the strip.
-     * @param {Phaser.TintModes} tintFill - The tint fill mode to use.
+     * @param {Phaser.TintModes} tintMode - The tint mode to use.
      * @param {Phaser.Types.Renderer.WebGL.RenderNodes.BatchHandlerQuadRenderOptions} renderOptions - Optional render features. Strip rendering should always set `multiTexturing` to false. It can use `smoothPixelArt`. Other options are ignored.
      * @param {function} [debugCallback] - The debug callback, called with an array consisting of alternating x,y values of the transformed vertices.
      */
@@ -156,7 +156,7 @@ var BatchHandlerStrip = new Class({
         colors,
         alphas,
         alpha,
-        tintFill,
+        tintMode,
         renderOptions,
         debugCallback
     )
@@ -245,7 +245,7 @@ var BatchHandlerStrip = new Class({
             vertexViewF32[vertexOffset32++] = uv[i];
             vertexViewF32[vertexOffset32++] = uv[i + 1];
             vertexViewF32[vertexOffset32++] = textureDatum;
-            vertexViewF32[vertexOffset32++] = tintFill;
+            vertexViewF32[vertexOffset32++] = tintMode;
             vertexViewU32[vertexOffset32++] = getTint(
                 colors[i / 2],
                 alphas[i / 2] * alpha

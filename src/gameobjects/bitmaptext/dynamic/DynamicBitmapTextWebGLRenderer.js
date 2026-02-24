@@ -79,7 +79,7 @@ var DynamicBitmapTextWebGLRenderer = function (renderer, src, drawingContext, pa
 
     tempTextureData.frame = src.frame;
 
-    var tintFill = TintModes.MULTIPLY;
+    var tintMode = TintModes.MULTIPLY;
     var tintTL = Utils.getTintAppendFloatAlpha(src.tintTopLeft, src._alphaTL);
     var tintTR = Utils.getTintAppendFloatAlpha(src.tintTopRight, src._alphaTR);
     var tintBL = Utils.getTintAppendFloatAlpha(src.tintBottomLeft, src._alphaBL);
@@ -194,7 +194,7 @@ var DynamicBitmapTextWebGLRenderer = function (renderer, src, drawingContext, pa
         if (displayCallback)
         {
             callbackData.color = 0;
-            callbackData.tintFill = tintFill;
+            callbackData.tintMode = tintMode;
             callbackData.tint.topLeft = tintTL;
             callbackData.tint.topRight = tintTR;
             callbackData.tint.bottomLeft = tintBL;
@@ -229,14 +229,14 @@ var DynamicBitmapTextWebGLRenderer = function (renderer, src, drawingContext, pa
                 tintBR = output.tint.bottomRight;
             }
 
-            tintFill = output.tintFill;
+            tintMode = output.tintMode;
             tintTL = Utils.getTintAppendFloatAlpha(tintTL, src._alphaTL);
             tintTR = Utils.getTintAppendFloatAlpha(tintTR, src._alphaTR);
             tintBL = Utils.getTintAppendFloatAlpha(tintBL, src._alphaBL);
             tintBR = Utils.getTintAppendFloatAlpha(tintBR, src._alphaBR);
         }
 
-        tempTintData1.tintEffect = tintFill;
+        tempTintData1.tintEffect = tintMode;
         tempTintData1.tintTopLeft = tintTL;
         tempTintData1.tintTopRight = tintTR;
         tempTintData1.tintBottomLeft = tintBL;

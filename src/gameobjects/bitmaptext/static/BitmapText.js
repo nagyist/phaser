@@ -552,7 +552,7 @@ var BitmapText = new Class({
      *
      * @param {number} [start=0] - The starting character to begin the tint at. If negative, it counts back from the end of the text.
      * @param {number} [length=1] - The number of characters to tint. Remember that spaces count as a character too. Pass -1 to tint all characters from `start` onwards.
-     * @param {number} [tintFill=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
+     * @param {number} [tintMode=Phaser.TintModes.MULTIPLY] - The tint mode to use.
      * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the character. If not other values are given this value is applied evenly, tinting the whole character.
      * @param {number} [topRight] - The tint being applied to the top-right of the character.
      * @param {number} [bottomLeft] - The tint being applied to the bottom-left of the character.
@@ -560,11 +560,11 @@ var BitmapText = new Class({
      *
      * @return {this} This BitmapText Object.
      */
-    setCharacterTint: function (start, length, tintFill, topLeft, topRight, bottomLeft, bottomRight)
+    setCharacterTint: function (start, length, tintMode, topLeft, topRight, bottomLeft, bottomRight)
     {
         if (start === undefined) { start = 0; }
         if (length === undefined) { length = 1; }
-        if (tintFill === undefined) { tintFill = TintModes.MULTIPLY; }
+        if (tintMode === undefined) { tintMode = TintModes.MULTIPLY; }
         if (topLeft === undefined) { topLeft = -1; }
 
         if (topRight === undefined)
@@ -602,7 +602,7 @@ var BitmapText = new Class({
             }
             else
             {
-                var tintEffect = tintFill;
+                var tintEffect = tintMode;
 
                 if (color)
                 {
@@ -668,7 +668,7 @@ var BitmapText = new Class({
      *
      * @param {(string|number)} word - The word to search for. Either a string, or an index of the word in the words array.
      * @param {number} [count=1] - The number of matching words to tint. Pass -1 to tint all matching words.
-     * @param {number} [tintFill=Phaser.TintModes.MULTIPLY] - The tint fill mode to use.
+     * @param {number} [tintMode=Phaser.TintModes.MULTIPLY] - The tint mode to use.
      * @param {number} [topLeft=0xffffff] - The tint being applied to the top-left of the word. If not other values are given this value is applied evenly, tinting the whole word.
      * @param {number} [topRight] - The tint being applied to the top-right of the word.
      * @param {number} [bottomLeft] - The tint being applied to the bottom-left of the word.
@@ -676,7 +676,7 @@ var BitmapText = new Class({
      *
      * @return {this} This BitmapText Object.
      */
-    setWordTint: function (word, count, tintFill, topLeft, topRight, bottomLeft, bottomRight)
+    setWordTint: function (word, count, tintMode, topLeft, topRight, bottomLeft, bottomRight)
     {
         if (count === undefined) { count = 1; }
 
@@ -694,7 +694,7 @@ var BitmapText = new Class({
 
             if ((wordIsNumber && i === word) || (!wordIsNumber && lineword.word === word))
             {
-                this.setCharacterTint(lineword.i, lineword.word.length, tintFill, topLeft, topRight, bottomLeft, bottomRight);
+                this.setCharacterTint(lineword.i, lineword.word.length, tintMode, topLeft, topRight, bottomLeft, bottomRight);
 
                 total++;
 

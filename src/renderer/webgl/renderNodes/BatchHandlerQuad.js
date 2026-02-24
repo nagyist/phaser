@@ -634,7 +634,7 @@ var BatchHandlerQuad = new Class({
      * @param {number} texY - The top v coordinate (0-1).
      * @param {number} texWidth - The width of the texture (0-1).
      * @param {number} texHeight - The height of the texture (0-1).
-     * @param {number} tintFill - The tint fill mode to use.
+     * @param {number} tintMode - The tint mode to use.
      * @param {number} tintTL - The top-left tint color.
      * @param {number} tintBL - The bottom-left tint color.
      * @param {number} tintTR - The top-right tint color.
@@ -651,7 +651,7 @@ var BatchHandlerQuad = new Class({
         x3, y3,
         texX, texY,
         texWidth, texHeight,
-        tintFill,
+        tintMode,
         tintTL, tintBL, tintTR, tintBR,
         renderOptions
     )
@@ -684,7 +684,7 @@ var BatchHandlerQuad = new Class({
         vertexViewF32[vertexOffset32++] = texX;
         vertexViewF32[vertexOffset32++] = texY + texHeight;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintBL;
 
         // Top-left
@@ -693,7 +693,7 @@ var BatchHandlerQuad = new Class({
         vertexViewF32[vertexOffset32++] = texX;
         vertexViewF32[vertexOffset32++] = texY;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintTL;
 
         // Bottom-right
@@ -702,7 +702,7 @@ var BatchHandlerQuad = new Class({
         vertexViewF32[vertexOffset32++] = texX + texWidth;
         vertexViewF32[vertexOffset32++] = texY + texHeight;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintBR;
 
         // Top-right
@@ -711,7 +711,7 @@ var BatchHandlerQuad = new Class({
         vertexViewF32[vertexOffset32++] = texX + texWidth;
         vertexViewF32[vertexOffset32++] = texY;
         vertexViewF32[vertexOffset32++] = textureDatum;
-        vertexViewF32[vertexOffset32++] = tintFill;
+        vertexViewF32[vertexOffset32++] = tintMode;
         vertexViewU32[vertexOffset32++] = tintTR;
 
         // Increment the instance count.

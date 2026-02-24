@@ -299,12 +299,12 @@ var NineSlice = new Class({
          * - Phaser.TintModes.OVERLAY
          * - Phaser.TintModes.HARD_LIGHT
          *
-         * @name Phaser.GameObjects.NineSlice#tintFill
+         * @name Phaser.GameObjects.NineSlice#tintMode
          * @type {Phaser.TintModes}
          * @default Phaser.TintModes.MULTIPLY
          * @since 4.0.0
          */
-        this.tintFill = TintModes.MULTIPLY;
+        this.tintMode = TintModes.MULTIPLY;
 
         var textureFrame = scene.textures.getFrame(texture, frame);
 
@@ -633,7 +633,7 @@ var NineSlice = new Class({
     clearTint: function ()
     {
         this.setTint(0xffffff);
-        this.setTintFill();
+        this.setTintMode();
 
         return this;
     },
@@ -643,7 +643,7 @@ var NineSlice = new Class({
      *
      * The tint applies a color to the pixel color values
      * from the GameObject's texture in one of several modes,
-     * set with `setTintFill` or the `tintFill` property.
+     * set with `setTintMode` or the `tintMode` property.
      *
      * To modify the tint color once set, either call this method again with new values or use the
      * `tint` property.
@@ -668,7 +668,7 @@ var NineSlice = new Class({
     },
 
     /**
-     * Sets the tint fill mode for this Game Object.
+     * Sets the tint mode for this Game Object.
      *
      * The tint mode applies a color to the pixel color values
      * from the GameObject's texture in one of several modes:
@@ -680,10 +680,7 @@ var NineSlice = new Class({
      * - Phaser.TintModes.OVERLAY
      * - Phaser.TintModes.HARD_LIGHT
      *
-     * There was a `setTintFill` method in Phaser 3, but it has been
-     * replaced with this method which has sole responsibility for setting the tint fill mode.
-     *
-     * @method Phaser.GameObjects.NineSlice#setTintFill
+     * @method Phaser.GameObjects.NineSlice#setTintMode
      * @webglOnly
      * @since 4.0.0
      *
@@ -691,11 +688,11 @@ var NineSlice = new Class({
      *
      * @return {this} This Game Object instance.
     */
-    setTintFill: function (mode)
+    setTintMode: function (mode)
     {
         if (mode === undefined) { mode = TintModes.MULTIPLY; }
 
-        this.tintFill = mode;
+        this.tintMode = mode;
         return this;
     },
 
@@ -703,7 +700,7 @@ var NineSlice = new Class({
      * Does this Game Object have a tint applied?
      *
      * It checks to see if the tint property is set to a value other than 0xffffff
-     * or the tint fill mode is not the default Phaser.TintModes.MULTIPLY.
+     * or the tint mode is not the default Phaser.TintModes.MULTIPLY.
      * This indicates that a Game Object is tinted.
      *
      * @name Phaser.GameObjects.NineSlice#isTinted
@@ -716,7 +713,7 @@ var NineSlice = new Class({
 
         get: function ()
         {
-            return (this.tint !== 0xffffff || this.tintFill !== TintModes.MULTIPLY);
+            return (this.tint !== 0xffffff || this.tintMode !== TintModes.MULTIPLY);
         }
 
     },

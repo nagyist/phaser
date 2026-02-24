@@ -94,7 +94,7 @@ var SubmitterTile = new Class({
         }
         else
         {
-            tintEffect = gameObject.tintFill;
+            tintEffect = gameObject.tintMode;
             var tint = 0xffffffff;
             tintTopLeft = tint;
             tintBottomLeft = tint;

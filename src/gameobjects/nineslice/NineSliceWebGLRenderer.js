@@ -42,7 +42,7 @@ var NineSliceWebGLRenderer = function (renderer, src, drawingContext, parentMatr
     var calcMatrix = GetCalcMatrix(src, camera, parentMatrix, !drawingContext.useCanvas).calc;
     var color = Utils.getTintAppendFloatAlpha(src.tint, alpha);
     var glTexture = src.frame.source.glTexture;
-    var tintEffect = src.tintFill;
+    var tintEffect = src.tintMode;
 
     var quad, vtl, vbr;
 
