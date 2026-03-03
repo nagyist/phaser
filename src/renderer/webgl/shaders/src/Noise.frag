@@ -12,6 +12,7 @@ uniform vec2 uOffset;
 uniform vec4 uColorStart;
 uniform vec4 uColorEnd;
 uniform float uPower;
+uniform int uMode;
 
 varying vec2 outTexCoord;
 
@@ -23,7 +24,33 @@ float trig(vec2 p)
 void main ()
 {
     float value = pow(trig(outTexCoord + uOffset), uPower);
-    vec4 color = mix(uColorStart, uColorEnd, value);
-    color.rgb *= color.a;
-    gl_FragColor = color;
+    if (uMode == 0)
+    {
+        vec4 color = mix(uColorStart, uColorEnd, value);
+        color.rgb *= color.a;
+        gl_FragColor = color;
+    }
+    else if (uMode == 1)
+    {
+        float valueR = pow(trig(outTexCoord + uOffset + 32.1), uPower);
+        float valueG = pow(trig(outTexCoord + uOffset + 11.1), uPower);
+        float valueB = pow(trig(outTexCoord + uOffset + 23.4), uPower);
+        vec4 color = vec4(valueR, valueG, valueB, 1.);
+        color *= mix(uColorStart, uColorEnd, value);
+        color.rgb *= color.a;
+        gl_FragColor = color;
+    }
+    else if (uMode == 2)
+    {
+        float valueAngle = pow(trig(outTexCoord + uOffset), uPower) * 3.141592;
+        float x = value * cos(valueAngle);
+        float y = value * sin(valueAngle);
+        vec4 color = vec4(
+            x,
+            y,
+            sqrt(1. - x * x - y * y),
+            1.0
+        );
+        gl_FragColor = color * 0.5 + 0.5;
+    }
 }

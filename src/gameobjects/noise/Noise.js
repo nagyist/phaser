@@ -126,6 +126,30 @@ var Noise = new Class({
         {
             this.setNoiseColor(config.noiseColorStart, config.noiseColorEnd);
         }
+
+        /**
+         * Whether to render channel noise separately,
+         * creating many colors of output.
+         *
+         * @name Phaser.GameObjects.Noise#noiseRandomChannels
+         * @type {boolean}
+         * @default false
+         * @since 4.0.0
+         */
+        this.noiseRandomChannels = !!config.noiseRandomChannels;
+
+        /**
+         * Whether to render a random normal value per pixel.
+         * The normal is in the hemisphere facing the camera.
+         *
+         * This value overrides `noiseRandomChannels`.
+         *
+         * @name Phaser.GameObjects.Noise#noiseRandomNormal
+         * @type {boolean}
+         * @default false
+         * @since 4.0.0
+         */
+        this.noiseRandomNormal = !!config.noiseRandomNormal;
     },
 
     /**
@@ -211,6 +235,11 @@ var Noise = new Class({
         setUniform('uColorStart', this.noiseColorStart.gl);
         setUniform('uColorEnd', this.noiseColorEnd.gl);
         setUniform('uPower', this.noisePower);
+
+        var mode = 0;
+        if (this.noiseRandomChannels) { mode = 1; }
+        if (this.noiseRandomNormal) { mode = 2; }
+        setUniform('uMode', mode);
     }
 });
 
