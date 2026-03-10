@@ -6,7 +6,13 @@ This guide assumes you are using [Phaser](https://www.phaser.io), but the princi
 
 > **Cheat Sheet**
 >
-> Here's the quick path to success with compressed textures on the Web.
+> Encode a useful set of compressed textures with a single script:
+>
+> `./compress-texture.sh myImage.png`
+>
+> See 'Automating Encoding with PVRTexToolCLI and ImageMagick' below for more details on the script.
+>
+> Or if you want to be a bit more hands-on, here's a manual path to quick success with compressed textures on the Web.
 >
 > - Generate a texture atlas in TexturePacker, and save it as PNG.
 > - Use ImageMagick to lighten the image for hardware compression on the Web: `magick input.png -set colorspace RGB -colorspace sRGB output.png`
@@ -16,6 +22,8 @@ This guide assumes you are using [Phaser](https://www.phaser.io), but the princi
 >   - PVRTC v1
 >   - S3TC DXT5 sRGB (also known as BC3)
 > - Select the appropriate format for your target hardware (Phaser will do this automatically)
+>
+> Most of this document explains what all this stuff means!
 
 ## What Are Compressed Textures?
 
@@ -63,24 +71,19 @@ Different hardware platforms support different kinds of compressed texture. You 
 
 ### An Example
 
-Phaser makes it easy to load the correct file for the current platform. There are several examples online at [Phaser Examples/Textures](https://labs.phaser.io/index.html?dir=textures/&q=). Consider the following [example for loading a single texture](https://labs.phaser.io/view.html?src=src\textures\compressed%20texture.js):
+Phaser makes it easy to load the correct file for the current platform. There are several examples online at [Phaser Examples/Textures](https://labs.phaser.io/index.html?dir=textures/&q=). Consider the following [example for loading a single texture](https://labs.phaser.io/view.html?src=src%2Ftextures%2Fcompressed%20texture.js):
 
 ```js
 class Demo extends Phaser.Scene
 {
-    constructor ()
-    {
-        super();
-    }
-
     preload ()
     {
         this.load.texture('labs', {
-            'ASTC': 'assets/compressed/labs-astc-4x4.pvr',
-            'ETC1': 'assets/compressed/labs-etc1.pvr',
-            'PVRTC': 'assets/compressed/labs-pvrtc-4bpp-rgba-srgb.pvr',
-            'S3TC': 'assets/compressed/labs-bc3.pvr',
-            'IMG': 'assets/compressed/labs.png'
+            'ASTC': 'assets/compressed/compressed/labs-ASTC-4x4-lRGB.pvr',
+            'ETC': 'assets/compressed/compressed/labs-ETC2-lRGB.pvr',
+            'PVRTC': 'assets/compressed/compressed/labs-PVRTC-4BPP-lRGB.pvr',
+            'S3TC': 'assets/compressed/compressed/labs-S3TC-BC3-lRGB.pvr',
+            'IMG': 'assets/compressed/uncompressed/labs.png'
         });
     }
 
@@ -93,7 +96,6 @@ class Demo extends Phaser.Scene
 }
 
 const config = {
-    type: Phaser.AUTO,
     parent: 'phaser-example',
     width: 800,
     height: 600,
@@ -162,7 +164,7 @@ Follow these steps:
 2. Choose container format
 3. Choose internal format
 4. Decide on MIPMaps
-5. Create lightened image
+5. Consider brightness
 6. Encode file
 
 ### Create Base Image
@@ -171,7 +173,9 @@ Create an image, or have one created by an artist. You probably want a lossless 
 
 - Does it need an alpha channel?
 - What color space does it use: linear, or sRGB?
-- What size is the image?
+  - Most files encoded for the Web use sRGB.
+- What resolution is the image?
+  - Width x Height, e.g. 1280x720.
 
 You might use this PNG file as your fallback IMG, or create a lossy, highly-compressed version for the IMG, which is faster to download.
 
@@ -258,13 +262,19 @@ If you intend to use MIPMaps, you must use power-of-two resolutions. You may nee
 
 If you do not intend to use MIPMaps, ensure that your texture tool has them turned off. Unnecessary MIPMaps will add 33% to your compressed texture file size, as well as all the other restrictions that come with them.
 
-Note that TexturePacker does not generate MIPMaps. This is good. TexturePacker creates texture atlases which combine many images into a single texture, and MIPMaps would start to blur one image into another, causing visual glitches.
+> TexturePacker does not generate MIPMaps. This is good. TexturePacker creates texture atlases which combine many images into a single texture, and MIPMaps would start to blur one image into another, causing visual glitches.
 
 ### Create Lightened Image
 
 If you encode now, your texture will appear unexpectedly dark. This is because of the interaction between the Web's sRGB color space, and the linear color that WebGL extracts from compressed textures in hardware.
 
-The simplest solution is to create a lightened version of your base image.
+The easiest way to fix this is to encode the file with PVRTexTool (see Encode File below). You can also lighten the file prior to encoding e.g. with ImageMagick.
+
+This should only be necessary for use on the Web. Other rendering environments may be able to automatically adjust the colorspace of hardware compressed textures. However, this is not possible in WebGL.
+
+#### Lightening with ImageMagick
+
+If you can't use PVRTexTool to encode your images, you may need to lighten them earlier in the pipeline. The simplest solution is to create a lightened version of your base image.
 
 You can do this with ImageMagick (https://imagemagick.org/index.php) using the following command:
 
@@ -272,9 +282,7 @@ You can do this with ImageMagick (https://imagemagick.org/index.php) using the f
 magick input.png -set colorspace RGB -colorspace sRGB output.png
 ```
 
-This should only be necessary for use on the Web. Other rendering environments may be able to automatically adjust the colorspace of hardware compressed textures. However, this is not possible in WebGL.
-
-> Pro Tip: PVRTexTool, used below to create the compressed texture file, can also handle color space conversions. You must use it from the command line.
+> This may cause a loss of quality, due to intermediate steps. It's recommended to encode your images directly using PVRTexTool.
 
 ### Encode File
 
@@ -283,13 +291,19 @@ Now it is time to encode your compressed texture file. The precise steps will de
 - TexturePacker (https://www.codeandweb.com/texturepacker)
 - PVRTexTool (available with a free account at https://developer.imaginationtech.com/pvrtextool/)
 
+We recommend using TexturePacker to pack textures into PNG atlases, then using PVRTexTool to encode the atlases.
+
 #### TexturePacker
 
 TexturePacker lets you assemble images together into texture atlases.
 
 A texture atlas is more efficient than single image files, because the GPU doesn't like swapping textures while it is rendering. If the textures are all in a single atlas, or in a few atlases, the GPU doesn't have to switch as often, and your game will render faster.
 
-You should use TexturePacker to generate a base image PNG, prior to lightening and encoding it. You can also use it to encode the lightened texture itself; just make sure to turn off all extrude and margin settings, so the texture stays the same. It is safe to turn on options that increase the size of the texture, e.g. enforcing power-of-two resolution, so long as the image stays in the top-left corner.
+You should use TexturePacker to generate a base image PNG, prior to encoding it.
+
+When you are ready, press the "Publish sprite sheet" button to write out a file. TexturePacker will also output a JSON file describing where images are located in the atlas texture.
+
+You can also use TexturePacker to encode a single texture, such as a file manually lightened with ImageMagick. Just make sure to turn off all extrude and margin settings, so the texture stays the same. It is safe to turn on options that increase the size of the texture, e.g. enforcing power-of-two resolution, so long as the image stays in the top-left corner.
 
 TexturePacker doesn't generate MIPMaps.
 
@@ -331,8 +345,6 @@ Note: PVRTCII and ETC1 A are listed in TexturePacker, but are not supported in W
 Note: Other internal formats are listed, but not supported.
 
 There are other options related to quality and image encoding; it is generally safe to leave these as they are.
-
-When you are ready, press the "Publish sprite sheet" button to write out a file. TexturePacker will also output a JSON file describing where images are located in the atlas texture.
 
 You can also use TexturePacker on the command line, to automate your workflow.
 
@@ -376,7 +388,9 @@ The Encode window also allows you to automatically generate MIPMaps. **Check** w
 
 When you are satisfied with your options, hit "Encode", and then save or save-as the file.
 
-PVRTexTool also supports command-line automation.
+Note that the PVRTexTool UI has no place to specify that the input is sRGB. You must either lighten the image before processing, or use the command line to enable this option.
+
+PVRTexTool also supports command-line automation. Consult the online documentation for usage, or see below for a script that can handle it for you.
 
 #### Unsupported Formats
 
@@ -403,12 +417,56 @@ key-family-option-colorspace-mip
 So you might wind up with the following files:
 
 - `title.png`
-- `title-lightened.png`
+- `title-lightened.png` (if you need an intermediate lightening step)
 - `title-IMG-sRGB.png`
 - `title-ASTC-4x4-sRGB-NOMIP.pvr`
 - `title-ETC-RGBA-sRGB-NOMIP.pvr`
 - `title-PVRTC-2bppRGBA-NOMIP.pvr`
 - `title-S3TC-BC3-sRGB-NOMIP.pvr`
+
+## Automating Encoding with PVRTexToolCLI and ImageMagick
+
+You can automate texture encoding from the command line. We've written a script to encode recommended formats.
+
+The following `bash` command looks for `./myImage.png`, and creates encodings in the same location.
+
+```sh
+./compress-texture.sh myImage.png
+```
+
+On Windows you may need to use `./compress-texture.sh <filename> use_exe`, even if you're in Windows Subsystem for Linux (WSL).
+
+Make sure you have installed the following, and they are available in the path on your command line:
+
+- ImageMagick (specifically `identify`)
+- PVRTexTool (specifically `PVRTexToolCLI`)
+
+It creates the desired encodings:
+
+- ASTC
+- ETC2
+- PVRTC
+- BC3 (S3TC)
+
+The script uses `identify` to check whether the resolution matches the more demanding formats. If it doesn't match, it will pad the formats to match. Beware: this can change the size of textures!
+
+It runs `PVRTexToolCLI` to do the encoding in a single step. You **do not need to lighten the image** for this script to work. It generates a command similar to this:
+
+```sh
+PVRTexToolCLI -i ./myImage.png -o ./myImage-S3TC-BC3-lRGB.pvr -p -flip y,flag -ics lRGB -f BC3 -rCanvas 1024,1024
+```
+
+- `-i`: input file
+- `-o`: output file
+- `-p`: premultiply alpha
+- `-flip y,flag`: Flip the image vertically (this is necessary for Phaser 4)
+- `-ics lRGB`: treat the input color space as linear, so we don't need to lighten it
+- `-f`: target encoding format
+- `-rCanvas`: resize canvas (necessary for the BC3 encoding)
+- `-q`: quality level for other encoding types (we set it to maximum, which runs slow but produces good results)
+- `-potcanvas +`: allow the canvas to resize to a power of 2 (necessary for the PVRTC encoding)
+
+You may want to create variants of the script for other targets. Phaser 4 uses premultiplied alpha and a flipped Y axis to be compatible with WebGL, but other rendering systems may want different inputs.
 
 ## Now Make Games!
 
