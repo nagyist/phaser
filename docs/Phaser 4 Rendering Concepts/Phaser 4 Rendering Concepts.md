@@ -4,7 +4,7 @@ Phaser 4 is a total overhaul of the WebGL rendering engine. In this article we'l
 
 ## State of Phaser 3: Why We Did It
 
-Phaser 3 has been evolving for the last 7 years. This made it a highly capable game engine for the Web. It established rendering solutions for performant gaming situations, powerful effects, and flexible rendering targets.
+Phaser 3 has been evolving over several years. This made it a highly capable game engine for the Web. It established rendering solutions for performant gaming situations, powerful effects, and flexible rendering targets.
 
 However, these solutions all had to share the WebGL state. WebGL works by setting various internal parameters, the "state", which take effect when commands run. For example, to create a texture with premultiplication, we run `gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)` to set the state, then run `gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image)` to upload `image` with premultiplication. The `texImage2D` command has no way to set premultiplication; it is provided solely by the WebGL state.
 
@@ -34,11 +34,21 @@ This is not an exhaustive list. As always, check the API documentation for the m
 
 ### Significant Removals
 
+- Canvas considered deprecated
 - Pipelines
+- Masks
 - Derived FX
 - `Mesh` and `Plane`
 - `BitmapMask`
 - `Point`
+
+#### Canvas considered deprecated
+
+The Canvas renderer is still available, but it should be considered deprecated. Canvas rendering doesn't support any of the WebGL techniques we use to provide advanced rendering features. Many features from Phaser 3 never worked in Canvas, and almost everything new in Phaser 4 is not available in Canvas.
+
+As WebGL support is effectively baseline today, it makes sense to focus on WebGL over Canvas.
+
+Canvas does have one advantage: a wider range of blend modes. WebGL only supports NORMAL, ADD, MULTIPLY, and SCREEN out of the 27 modes in Canvas. The WebGL renderer can recreate these modes with the new `Blend` filter, although you can't just blend things straight onto the scene: you have to use a CaptureFrame object, DynamicTexture or other means of indirection.
 
 #### Pipelines
 
@@ -50,13 +60,19 @@ It's generally not necessary to handle render nodes, but game objects do maintai
 
 #### Derived FX
 
-The FX `Bloom`, `Gradient`, `Shine`, `Vignette`, and `Wipe` were removed.
+The FX `Bloom`, `Circle`, `Gradient`, and `Shine` were replaced with Actions or GameObjects.
 
-These FX are all "derived" from other, more basic processes. Many involve a gradient function of some sort, and there are a whole lot of possible gradient definitions. This means a lot of possible complexity.
+These FX are all "derived" from other, more basic processes. `Bloom` is a combination of blurring, thresholding, and blending. `Circle` was just a specialized mask. `Gradient` is better suited as a GameObject, because it doesn't alter an existing image: it replaces it. `Shine` is a blend of a gradient over a target, and should have full control over movement.
 
-We removed these FX, with the intention that they can be built up from the Filters included in Phaser 4, and perhaps some custom texture shaders to provide gradients. For example, the Bloom filter can be recreated using ParallelFilters with a top pass of Threshold and Blur to select bright tones and spread them out, blended onto the bottom pass with ADD.
+We removed these effects, and replaced them with other ways to get the same result.
 
-See below for how FX have become Filters.
+`Bloom` is now accessed via `Phaser.Actions.AddEffectBloom()`. This creates a set of filters which apply bloom to the target, either the camera or a game object.
+
+`Shine` is now accessed via `Phaser.Actions.AddEffectShine()`. This creates a Gradient and uses it to blend a shine across the target.
+
+`Circle` is now a case of `Phaser.Actions.AddMaskShape()`. This creates a Shape and uses it to add a mask.
+
+See below for how FX (and Masks) have become Filters.
 
 #### `Mesh` and `Plane`
 
@@ -66,7 +82,7 @@ We intend to handle 3D properly in the future, so we removed these limited 3D im
 
 The `BitmapMask` class was removed, because it was only ever used in WebGL, and WebGL now has the Mask filter for more powerful masking operations.
 
-`GeometryMask` remains available in the canvas renderer, but not in WebGL.
+`GeometryMask` remains available in the Canvas renderer, but not in WebGL.
 
 #### `Point`
 
@@ -77,6 +93,10 @@ The `Point` class was removed because it overlapped with `Vector2`. We only need
 The following game objects were added. They are all only available in WebGL, except Stamp which is also available in Canvas.
 
 - `CaptureFrame`
+- `Gradient`
+- `Noise`
+- `NoiseCell2D`, `NoiseCell3D` and `NoiseCell4D`
+- `NoiseSimplex2D` and `NoiseSimplex3D`
 - `SpriteGPULayer`
 - `Stamp`
 - `TilemapGPULayer`
@@ -86,6 +106,40 @@ The following game objects were added. They are all only available in WebGL, exc
 The `CaptureFrame` game object does not render. Instead, it copies whatever has already been rendered, and saves it to a texture for later. This is useful for applying filters to part of the scene's depth, without messing about with layers, containers, or dynamic textures. As it is a simple object, it can be moved around in the display list to change what it captures.
 
 Technically, CaptureFrame copies the WebGL framebuffer that is currently bound. Mostly this means the main game canvas. Filters and DynamicTextures use their own framebuffers, so a CaptureFrame inside a Container with filters will capture just the contents of the Container.
+
+#### `Gradient`
+
+The `Gradient` game object renders color gradients. These can be as simple as linear gradient of one color into another color, or as complex as a series of different-sized bands of colors radiating from a center. A Gradient gives you control of its shape in several modes. Its colors are defined in a `ColorRamp`, which contains a list of `ColorBand` objects, each of which describes two colors and a transition between them, in various modes including HSV support.
+
+Every number between 0 and 1 corresponds to a precise color from the gradient ramp. You can access these through code, if you want to use a ColorRamp without rendering it.
+
+The Gradient object extends `Shader`. The fragment shader supports millions of bands per gradient, through the use of a data texture which encodes information about the bands in a binary tree.
+
+#### `Noise`
+
+The `Noise` game object extends Shader to render random noise. This can be used for static, added texture, or other visual effects.
+
+Behind the scenes, random noise is achieved by running several arithmetic operations and taking just the last few decimal places, which are very unpredictable. Our algorithm is an old technique compatible with WebGL, and it is definitely not safe for cryptographic security purposes. There are more advanced techniques available via bitshifting in WebGL2, but we have stuck with WebGL for wider compatibility.
+
+Noise is also available in code via `Phaser.Math.Hash()`. This uses an identical algorithm for parity with the shader. However, because this randomness is very sensitive to change, it might not produce the same results on the CPU as on the GPU. This is a useful source of reproducible randomness for games.
+
+#### `NoiseCell2D`, `NoiseCell3D` and `NoiseCell4D`
+
+The `NoiseCell` family of game objects extend Shader to render cellular noise. This is also called Worley noise or Voronoi noise. It consists of a grid in 2, 3, or 4 dimensions, which is distorted by random amounts to create a pattern of cells. This has a distinctive pebbly or faceted look. You can add octaves of noise to make the pattern more intricate and naturalistic.
+
+The higher-dimensional versions of NoiseCell render a slice through 3D or 4D space. You can slide that slice along the Z or W axes to smoothly animate the texture.
+
+Internally, NoiseCell shaders use the same randomness algorithm from Noise. It is only evaluated at grid points.
+
+Cellular noise is also available in code via `Phaser.Math.HashCell()`.
+
+#### `NoiseSimplex2D` and `NoiseSimplex3D`
+
+The `NoiseSimplex` family of game objects extend Shader to render simplex noise. This is a modern gradient noise implementation. We use a version which supports tiling and "flow", a periodic animation. Versions are available in 2 and 3 dimensions; higher dimensions are not particularly necessary. Extensive options allow you to create many natural phenomena such as clouds, fire, and water.
+
+Internally, NoiseSimplex uses the same randomness algorithm from Noise. It is evaluated at points of a "simplex grid", a pattern of triangles or tetrahedrons where each point contains a random vector. The vectors can be twisted to create "flow".
+
+Simplex noise is also available in code via `Phaser.Math.HashSimplex()`.
 
 #### `SpriteGPULayer`
 
@@ -107,9 +161,7 @@ The `TilemapGPULayer` object is an option within `Tilemap`. When you create a `T
 
 TilemapGPULayer renders the layer as a single quad. This has quality and performance advantages. Because the shader has knowledge of the full layer, it can accurately blend across tile boundaries, resulting in perfect texture filtering when antialiasing is enabled. And because the shader cost is per-pixel, not per-tile, it can render very quickly.
 
-For technical reasons, mobile GPUs may not render TilemapGPULayer as efficiently as desktop GPUs. Bear this in mind before choosing it for your project.
-
-However, because it renders per-pixel, TilemapGPULayer suffers no performance loss when rendering large numbers of tiles. It can render a tile layer up to 4096x4096 tiles, and will happily render the entire layer just as quickly if the camera zooms out to see all 16 million tiles. If you need extremely large numbers of tiles on screen at once, TilemapGPULayer may still be a superior choice for mobile platforms.
+Because it renders per-pixel, TilemapGPULayer suffers no performance loss when rendering large numbers of tiles. It can render a tile layer up to 4096x4096 tiles, and will happily render the entire layer just as quickly if the camera zooms out to see all 16 million tiles. If you need extremely large numbers of tiles on screen at once, TilemapGPULayer is a superior choice for mobile platforms.
 
 ### Significant Changes
 
@@ -131,7 +183,7 @@ Phaser 3 chose to represent things using top-left orientation. This led to misma
 
 Phaser 4 has switched to using GL orientation. This is largely invisible to the user, as we take care of texture coordinate handling. Some shader code may need to be revised, as the top and bottom might have switched. Mostly it just simplifies the codebase.
 
-If you are using **compressed textures**, note that Phaser 4 requires them to be encoded with the Y axis pointing "up". This is usually available as a "flip Y" option in your texture compression software. We cannot re-encode these textures at runtime, due to the way compression achieves efficiency.
+If you are using **compressed textures**, note that Phaser 4 requires them to be encoded with the Y axis pointing "up". This is usually available as a "flip Y" option in your texture compression software. We cannot re-encode these textures at runtime, due to the way compression achieves efficiency. See the Compressed Textures guide for easy, correct handling of compressed textures.
 
 #### FX and Masks are now Filters
 
@@ -145,17 +197,33 @@ Filters are divided into "internal" and "external" lists. Internal filters affec
 
 Note that some objects cannot define the internal space, so they use the external space instead. Objects without width or height are affected. `Shape` objects are also affected, as they may have a stroke which would be cut off by the reported width and height; they can turn this off by setting `shape.filtersFocusContext = false`.
 
-As noted above, we removed the filters Bloom, Gradient, Shine, Vignette and Wipe.
+As noted above, we removed the filters Bloom, Circle, Gradient, and Shine. They are available as actions or game objects.
 
 The existing filter ColorMatrix shifted its color management methods onto a property called `colorMatrix`, so you would now call `colorMatrix.colorMatrix.sepia()`.
 
-We added the new filters Blend, Mask, Parallel Filters, Sampler, and Threshold.
+We added the new filters Blend, Blocky, Combine Color Matrix, Gradient Map, Image Light, Key, Mask, Normal Tools, Panorama Blur, Parallel Filters, Quantize, Sampler, and Threshold.
 
 Blend combines the input with a texture. This is similar to blend modes, but whereas WebGL blend modes are fairly restricted, this filter supports all the blend modes available in the canvas renderer. The Blend filter also support overdriving, mixing outside the usual 0-1 range, which can create useful color effects.
 
+Blocky pixelates the image using pixels from the center of grid cells. This is similar to Pixelate, but that uses extra samples to smooth the color. Blocky may be less smooth, but always returns a color that exists in the image.
+
+Combine Color Matrix uses color channels from another image. You can use this to take one image's brightness and turn it into an alpha channel for another image, among other operations.
+
+Gradient Map uses image brightness to drive a ColorRamp. You can use this to rewrite the palette of an image at render time, or just create wild effects.
+
+Image Light uses a normal map and an environment map to create Image Based Lighting. This is a quick and easy way to apply realistic lighting to objects. You can use proper 360 degree panoramas for realistic reflections, or simpler gradients or images to give the impression of a natural scene.
+
+Key erases or isolates a specific color.
+
 Mask takes the place of masks in Phaser 3. It can take a texture, or a game object, which it draws to a DynamicTexture. Note that a Container with other objects, even objects with their own filters and masks, is a valid mask source.
 
+Normal Tools allows you to rotate, squish, and otherwise manipulate normal maps. It also supports "ratio" output, measuring how closely the surface faces the viewpoint. Many filters can produce or use normal maps, and Normal Tools helps you control them.
+
+Panorama Blur is a special kind of blur which runs in spherical space. It's intended to average out 360 degree panorama files for Image Light to create diffuse environment maps. While it is an inefficient filter as it has to sum half the image into each pixel, it might be useful for real-time environment capture.
+
 Parallel Filters passes the input image through two different filter lists, and combines them at the end. It is useful when you want some memory in a complex stack of filters.
+
+Quantize reduces the number of colors in the image. This can create a retro effect. It implements dithering with Interleaved Gradient Noise, which creates excellent quality even with very few colors.
 
 Sampler extracts data from the WebGL texture and sends it back to the CPU for use in a callback. It is similar to the snapshot functions available on DynamicTexture.
 
@@ -174,6 +242,8 @@ Objects can now cast "self-shadows", using a more realistic shader to simulate t
 In Phaser 3, lights had an implicit height, based on the game resolution. In Phaser 4, lights have a Z value to set this explicitly.
 
 Note that lighting changes the shader, which breaks batches (see below).
+
+> You can also use the `ImageLight` filter to apply lighting, but it is not part of the core lighting system, and is not good for nearby light sources.
 
 #### `DynamicTexture` and `RenderTexture` API
 
@@ -278,7 +348,7 @@ You can create **compressed textures** using tools such as TexturePacker or PVRT
 >
 >- All formats support power-of-two resolutions, and some require it.
 >- For good device coverage, select ASTC 4x4, ETC2, PVRTC 4bpp, and S3TC BC3 (aka DXT5) compression types.
->- Ensure that your compression software is receiving data in sRGB color space. If it receives linear RGB, the compressed texture will be too dark. You can fix this by pre-lightening the input with ImageMagick: `magick input.png -set colorspace RGB -colorspace sRGB output.png`.
+>- Ensure that your compression software is receiving data in sRGB color space. If it receives linear RGB, the compressed texture will be too dark. You can fix this by following the steps in the WebGL Compressed Textures guide.
 
 You can write to textures at runtime using **framebuffers**, which render to a texture instead of to the screen. Phaser provides `DynamicTexture` to draw in this way.
 
@@ -336,23 +406,34 @@ The batch can fill up completely. The default limit is 16,384 quads, because we 
 
 In summary, use similar objects to allow batching to improve performance.
 
-### Memory Usage and Generic Buffer Memory
+### Buffer Memory Usage
 
-Where possible, Phaser 4 uses a shared **generic buffer** to compose draw calls. By sharing this buffer, we keep memory usage relatively low and predictable.
+Batch families use large vertex buffers, each large enough to hold all the data for that type of batch. This is always 16,384 instances long, as that is the maximum number of vertices which can be identified by a 16-bit integer address.
 
-The generic buffer is used by the various batching families, and some other game objects such as Rope. They write the data for a single frame into the buffer, then forget about it.
+Some batch families also create an index buffer. This stores those vertex index values. This allows us to write fewer vertices to the vertex buffer. GL renders using triangles, and each quad is 2 triangles of 3 vertices each, so a quad with 4 corners should paradoxically take 6 vertices to render. Index buffers let us instruct GL to reuse some vertices, so a quad requires data for just 4 vertices. We save memory by using extra memory for an index buffer.
 
-The generic buffer is a 16 megabyte buffer by default (this can be configured). This is the maximum amount of data that a shader program can use, per the WebGL specification and the 16,384 quad limit. It is almost always bigger than necessary, but that means we never have to resize it, which would be expensive.
+Phaser 4 creates several buffers when it boots, to handle common forms of rendering. These are as follows:
 
-Phaser 3 used several different buffers, with a lower limit. The total memory footprint is harder to estimate, but it could conceivably grow to a larger size. The generic buffer accounts for all use cases and makes memory usage predictable.
+| Buffer Role | Size (bytes) |
+|:--|--:|
+| Generic single quad indices | 4 |
+| Single quad indices | 12 |
+| Single quad vertices | 112 |
+| Batch flat indices | 98304 |
+| Batch flat vertices | 589824 |
+| Batch quad indices | 196608 |
+| Batch quad vertices | 1835008 |
+| Batch tilesprite indices | 196608 |
+| Batch tilesprite vertices | 2883584 |
+| **Total** | 5800064 |
 
 Many shaders use an extra buffer to describe "instances". This buffer is generally only 4 instances long, tiny enough to ignore.
 
-The `SpriteGPULayer` game object does not use the generic buffer. It needs to keep its data intact between frames, so it creates its own buffer. The size of this buffer is determined by the game object settings, and can go over 100 MB if you have millions of members. It trades memory for performance.
+The `SpriteGPULayer` game object does not use a shared buffer. It needs to keep its data intact between frames, so it creates its own buffer. The size of this buffer is determined by the game object settings, and can go over 100 MB if you have millions of members. It trades memory for performance.
 
 Textures take up memory on the GPU, proportional to their resolution. Assume 4 MB per megapixel. A texture with a MipMap uses 33% more memory. Because textures are stored as texels on the GPU, their format doesn't matter: a highly compressed JPEG still has the same number of texels as a lossless PNG. Format only matters for downloading the original texture. True compressed textures (PVR or KTX format) use less memory.
 
-Some game objects, such as `SpriteGPULayer` and `TilemapGPULayer`, store extra data in textures. These textures are typically small and don't consume much memory.
+Some game objects, such as `Gradient`, `SpriteGPULayer`, and `TilemapGPULayer`, store extra data in textures. These textures are typically small and don't consume much memory. The `ColorRamp` in a Gradient stores 16 bytes per `ColorBand`, plus 8 bytes at the start of the file for extra data. SpriteGPULayer stores texture frame data as 12 bytes per frame. TilemapGPULayer stores two textures: the Tileset texture uses 8 bytes per entry in an animation sequence, and another 8 bytes per actual frame, while the tilemap texture uses 4 bytes per tile.
 
 Each framebuffer has a texture, so it takes up memory too. It may have various "attachments" such as stencil, depth, etc, increasing its memory footprint.
 
@@ -398,7 +479,7 @@ Because SpriteGPULayer can display millions of objects, it's important to initia
 - Runtime cost: 1 quad (inefficient on some mobile devices)
 - Memory cost: 2 small textures
 
-Use `TilemapGPULayer` to render any number of tiles, with a fixed cost. By encoding the tilemap and tileset data into textures on the GPU, it can completely ignore the complexity of the tilemap. This works very well on desktop systems, but is less efficient on some mobile devices. It may still be optimal for displaying large numbers of tiles at once.
+Use `TilemapGPULayer` to render any number of tiles, with a fixed cost. By encoding the tilemap and tileset data into textures on the GPU, it can completely ignore the complexity of the tilemap. This works very well for displaying large numbers of tiles at once.
 
 ### Renderer Internals
 
@@ -409,6 +490,8 @@ Inside the renderer, we use a few core systems to keep things running smoothly. 
 We maintain a record of all relevant WebGL state parameters, the `WebGLGlobalWrapper`. We set WebGL state parameters by setting properties on this record. This allows us to optimize: the state manager can skip commands that it knows won't change anything.
 
 It also allows us to recreate the state if the WebGL context is lost.
+
+> Do not make WebGL calls directly in a Phaser 4 game! This can change the WebGL state without updating the WebGLGlobalWrapper, and can cause changes to spiral out of control. If you want to change the WebGL state, either use the wrapper, or do it within an `Extern` game object, which runs a reset after it finishes on the assumption that the WebGL state changed unpredictably.
 
 #### WebGL Resource Wrappers
 
