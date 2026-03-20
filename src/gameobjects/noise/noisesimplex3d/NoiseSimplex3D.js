@@ -13,7 +13,7 @@ var NoiseSimplex3DFrag = require('../../../renderer/webgl/shaders/NoiseSimplex3D
  * @classdesc
  * A NoiseSimplex3D object.
  *
- * This game object is a quad which displays cellular noise.
+ * This game object is a quad which displays simplex noise.
  * You can manipulate this object like any other, make it interactive,
  * and use it in filters and masks to create visually stunning effects.
  *
@@ -180,7 +180,7 @@ var NoiseSimplex3D = new Class({
          * This runs several octaves of noise to generate a random warp offset.
          * It adds to the expense of the shader.
          *
-         * @name Phaser.GameObjects.NoiseSimplex3D#noiseFlowPower
+         * @name Phaser.GameObjects.NoiseSimplex3D#noiseWarpAmount
          * @type {number}
          * @default 0
          * @since 4.0.0
@@ -258,7 +258,7 @@ var NoiseSimplex3D = new Class({
          * Lower values decay slower, prioritize high frequency detail.
          * Higher values decay faster, prioritize low frequency detail.
          *
-         * @name Phaser.GameObjects.NoiseSimplex3D#noiseFlowPower
+         * @name Phaser.GameObjects.NoiseSimplex3D#noiseContributionPower
          * @type {number}
          * @default 2
          * @since 4.0.0
@@ -306,7 +306,7 @@ var NoiseSimplex3D = new Class({
          * Lower values decay slower, prioritize high frequency detail.
          * Higher values decay faster, prioritize low frequency detail.
          *
-         * @name Phaser.GameObjects.NoiseSimplex3D#noiseFlowPower
+         * @name Phaser.GameObjects.NoiseSimplex3D#noiseWarpContributionPower
          * @type {number}
          * @default 2
          * @since 4.0.0
@@ -423,7 +423,7 @@ var NoiseSimplex3D = new Class({
          * Use a custom seed to create different, but reproducible,
          * randomness.
          *
-         * @name Phaser.GameObjects.NoiseSimplex2D#noiseSeed
+         * @name Phaser.GameObjects.NoiseSimplex3D#noiseSeed
          * @type {number[]}
          * @default [ 1, 2, 3 ]
          * @since 4.0.0
