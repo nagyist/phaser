@@ -22,7 +22,7 @@ var SceneEvents = require('../scene/events');
  * @constructor
  * @since 3.0.0
  *
- * @param {Phaser.Scene} scene - The Scene to which this Game Object Factory belongs.
+ * @param {Phaser.Scene} scene - The Scene to which this Game Object Creator belongs.
  */
 var GameObjectCreator = new Class({
 
