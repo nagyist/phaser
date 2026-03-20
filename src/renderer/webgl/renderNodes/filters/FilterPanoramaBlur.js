@@ -11,10 +11,10 @@ var ShaderSourceFS = require('../../shaders/FilterPanoramaBlur-frag.js');
 
 /**
  * @classdesc
- * This RenderNode renders the PanoramaBlue filter effect.
- * See {@link Phaser.Filters.PanoramaBlue}.
+ * This RenderNode renders the PanoramaBlur filter effect.
+ * See {@link Phaser.Filters.PanoramaBlur}.
  *
- * @class FilterPanoramaBlue
+ * @class FilterPanoramaBlur
  * @extends Phaser.Renderer.WebGL.RenderNodes.BaseFilterShader
  * @memberof Phaser.Renderer.WebGL.RenderNodes
  * @constructor
