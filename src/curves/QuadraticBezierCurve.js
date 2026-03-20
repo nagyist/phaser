@@ -21,7 +21,7 @@ var Vector2 = require('../math/Vector2');
  *
  * @param {(Phaser.Math.Vector2|number[])} p0 - Start point, or an array of point pairs.
  * @param {Phaser.Math.Vector2} p1 - Control Point 1.
- * @param {Phaser.Math.Vector2} p2 - Control Point 2.
+ * @param {Phaser.Math.Vector2} p2 - The end point of the curve.
  */
 var QuadraticBezier = new Class({
 
