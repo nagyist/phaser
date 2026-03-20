@@ -43,7 +43,7 @@ var INPUT_CONST = {
     TOUCH_START: 3,
 
     /**
-     * A touch pointer has been started.
+     * A touch pointer has been moved.
      *
      * @name Phaser.Input.TOUCH_MOVE
      * @type {number}
@@ -52,7 +52,7 @@ var INPUT_CONST = {
     TOUCH_MOVE: 4,
 
     /**
-     * A touch pointer has been started.
+     * A touch pointer has ended.
      *
      * @name Phaser.Input.TOUCH_END
      * @type {number}
@@ -70,7 +70,7 @@ var INPUT_CONST = {
     POINTER_LOCK_CHANGE: 6,
 
     /**
-     * A touch pointer has been been cancelled by the browser.
+     * A touch pointer has been cancelled by the browser.
      *
      * @name Phaser.Input.TOUCH_CANCEL
      * @type {number}
