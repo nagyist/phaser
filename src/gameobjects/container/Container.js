@@ -69,7 +69,6 @@ var tempTransformMatrix = new Components.TransformMatrix();
  *
  * @extends Phaser.GameObjects.Components.AlphaSingle
  * @extends Phaser.GameObjects.Components.BlendMode
- * @extends Phaser.GameObjects.Components.ComputedSize
  * @extends Phaser.GameObjects.Components.Depth
  * @extends Phaser.GameObjects.Components.Mask
  * @extends Phaser.GameObjects.Components.Transform
