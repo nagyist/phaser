@@ -9,7 +9,7 @@
  * The object will not render if any of its renderFlags are set or it is being actively filtered out by the Camera.
  * This method should not be called directly. It is a utility function of the Render module.
  *
- * @method Phaser.Tilemaps.TilemapLayer#renderWebGL
+ * @method Phaser.Tilemaps.TilemapGPULayer#renderWebGL
  * @since 3.0.0
  * @private
  *
