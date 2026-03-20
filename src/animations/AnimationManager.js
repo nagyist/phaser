@@ -927,7 +927,7 @@ var AnimationManager = new Class({
      * @param {(string|Phaser.Animations.Animation|Phaser.Types.Animations.PlayAnimationConfig)} key - The string-based key of the animation to play, or an Animation instance, or a `PlayAnimationConfig` object.
      * @param {Phaser.GameObjects.GameObject|Phaser.GameObjects.GameObject[]} children - An array of Game Objects to play the animation on. They must have an Animation Component.
      * @param {number} stagger - The amount of time, in milliseconds, to offset each play time by. If a negative value is given, it's applied to the children in reverse order.
-     * @param {boolean} [staggerFirst=true] -Should the first child be staggered as well?
+     * @param {boolean} [staggerFirst=true] - Should the first child be staggered as well?
      *
      * @return {this} This Animation Manager.
      */
