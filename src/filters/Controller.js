@@ -137,7 +137,7 @@ var Controller = new Class({
      *
      * @method Phaser.Filters.Controller#setPaddingOverride
      * @since 4.0.0
-     * @param {number|null} [left=0] - The top padding.
+     * @param {number|null} [left=0] - The left padding.
      * @param {number} [top=0] - The top padding.
      * @param {number} [right=0] - The right padding.
      * @param {number} [bottom=0] - The bottom padding.
