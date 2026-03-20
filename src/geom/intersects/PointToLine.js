@@ -6,7 +6,7 @@
  */
 
 /**
- * Checks if the a Point falls between the two end-points of a Line, based on the given line thickness.
+ * Checks if a Point falls between the two end-points of a Line, based on the given line thickness.
  *
  * Assumes that the line end points are circular, not square.
  *
