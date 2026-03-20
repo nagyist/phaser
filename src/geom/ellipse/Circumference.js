@@ -12,7 +12,7 @@
  *
  * @param {Phaser.Geom.Ellipse} ellipse - The Ellipse to get the circumference of.
  *
- * @return {number} The circumference of th Ellipse.
+ * @return {number} The circumference of the Ellipse.
  */
 var Circumference = function (ellipse)
 {
