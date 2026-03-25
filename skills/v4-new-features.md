@@ -252,7 +252,7 @@ const simplex = this.add.noiseSimplex2D({
 Renders very large numbers of quads (up to millions) in a single draw call by storing data in a static GPU buffer. Up to 100x faster than individual sprites. WebGL only.
 
 ```js
-const layer = this.add.spriteGPULayer(texture, frame);
+const layer = this.add.spriteGPULayer(texture, size); // size = max number of members
 
 // Add members (do this all at once, not incrementally):
 const member = { x: 100, y: 200, frame: 'tree', scaleX: 1, scaleY: 1, alpha: 1 };
@@ -384,7 +384,7 @@ sprite.setTintFill(0xff0000);  // fill mode implicit
 // v4 approach:
 sprite.setTint(0xff0000);                            // sets color only
 sprite.setTintMode(Phaser.TintModes.FILL);           // sets mode separately
-sprite.setTintFill(0xff0000);                        // still works (sets color, does NOT change mode)
+// NOTE: setTintFill() is a deprecated no-op in v4 -- it only logs a console error
 ```
 
 **Available modes** (`Phaser.TintModes`):
@@ -465,7 +465,7 @@ sprite.setTintFill(0xff0000);
 // v4: mode and color are separate
 sprite.setTint(0xff0000);
 sprite.setTintMode(Phaser.TintModes.FILL);
-// setTintFill() still sets color but does NOT switch mode in v4
+// NOTE: setTintFill() is a deprecated no-op in v4 -- it only logs a console error
 ```
 
 ### Shader GameObjects
