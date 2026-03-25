@@ -31,7 +31,7 @@ var WebGLBlendParametersFactory = {
      * @param {GLenum} [equation=gl.FUNC_ADD] - The blend equation.
      * @param {GLenum} [funcSrc=gl.ONE] - The source blend function.
      * @param {GLenum} [funcDst=gl.ONE_MINUS_SRC_ALPHA] - The destination blend function.
-     * @returns {Phaser.Types.Renderer.WebGL.WebGLBlendParameters} The created WebGLBlendParameters.
+     * @return {Phaser.Types.Renderer.WebGL.WebGLBlendParameters} The created WebGLBlendParameters.
      * @since 4.0.0
      */
     createCombined: function (renderer, enabled, color, equation, funcSrc, funcDst)
@@ -74,7 +74,7 @@ var WebGLBlendParametersFactory = {
      * @param {GLenum} [funcDstRGB=gl.ONE_MINUS_SRC_ALPHA] - The RGB destination blend function.
      * @param {GLenum} [funcSrcAlpha=gl.ONE] - The alpha source blend function.
      * @param {GLenum} [funcDstAlpha=gl.ONE_MINUS_SRC_ALPHA] - The alpha destination blend function.
-     * @returns {Phaser.Types.Renderer.WebGL.WebGLBlendParameters} The created WebGLBlendParameters.
+     * @return {Phaser.Types.Renderer.WebGL.WebGLBlendParameters} The created WebGLBlendParameters.
      * @since 4.0.0
      */
     createSeparate: function (renderer, enabled, color, equationRGB, equationAlpha, funcSrcRGB, funcDstRGB, funcSrcAlpha, funcDstAlpha)

@@ -11,7 +11,7 @@
  * @function Phaser.Renderer.WebGL.ShaderAdditionMakers.MakeFlatNormal
  * @since 4.0.0
  * @param {boolean} [disable=false] - Whether to disable the shader addition on creation.
- * @returns {Phaser.Types.Renderer.WebGL.ShaderAdditionConfig} The shader addition configuration.
+ * @return {Phaser.Types.Renderer.WebGL.ShaderAdditionConfig} The shader addition configuration.
  */
 var MakeFlatNormal = function (disable)
 {

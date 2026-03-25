@@ -23,7 +23,7 @@ var WebGLGlobalParametersFactory = {
      * @method Phaser.Renderer.WebGL.WebGLGlobalParametersFactory#getDefault
      * @since 4.0.0
      * @param {Phaser.Renderer.WebGL.WebGLRenderer} renderer - The WebGLRenderer to create the WebGLGlobalParameters for.
-     * @returns {Phaser.Types.Renderer.WebGL.WebGLGlobalParameters} The default WebGLGlobalParameters.
+     * @return {Phaser.Types.Renderer.WebGL.WebGLGlobalParameters} The default WebGLGlobalParameters.
      */
     getDefault: function (renderer)
     {

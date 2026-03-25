@@ -220,6 +220,17 @@ var LightsManager = new Class({
         return visibleLights;
     },
 
+    /**
+     * Sort function to sort lights by distance from the camera.
+     * The sort is in reverse order, so that the furthest light is culled first.
+     *
+     * @method Phaser.GameObjects.LightsManager#sortByDistance
+     * @since 4.0.0
+     *
+     * @param {number} a - The distance of the first light from the camera.
+     * @param {number} b - The distance of the second light from the camera.
+     * @return {boolean} True if `a` is further than `b`, otherwise false.
+     */
     sortByDistance: function (a, b)
     {
         return (a.distance >= b.distance);

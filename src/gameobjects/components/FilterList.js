@@ -129,7 +129,7 @@ var FilterList = new Class({
      *
      * @method Phaser.GameObjects.Components.FilterList#clear
      * @since 4.0.0
-     * @returns {this} This FilterList instance.
+     * @return {this} This FilterList instance.
      */
     clear: function ()
     {
@@ -464,7 +464,7 @@ var FilterList = new Class({
      *
      * @param {Phaser.Types.Filters.GradientMapConfig} [config] - The configuration object for the GradientMap effect.
      *
-     * @returns {Phaser.Filters.GradientMap}
+     * @return {Phaser.Filters.GradientMap}
      */
     addGradientMap: function (config)
     {
@@ -499,7 +499,7 @@ var FilterList = new Class({
      * @since 4.0.0
      *
      * @param {Phaser.Types.Filters.ImageLightConfig} config
-     * @returns {Phaser.Filters.ImageLight} The new ImageLight filter controller.
+     * @return {Phaser.Filters.ImageLight} The new ImageLight filter controller.
      */
     addImageLight: function (config)
     {
@@ -525,7 +525,7 @@ var FilterList = new Class({
      *
      * @param {Phaser.Types.Filters.KeyConfig} [config] - The configuration object for the Key effect.
      *
-     * @returns {Phaser.Filters.Key} The new Key filter controller.
+     * @return {Phaser.Filters.Key} The new Key filter controller.
      */
     addKey: function (config)
     {
@@ -617,7 +617,7 @@ var FilterList = new Class({
      * @since 4.0.0
      *
      * @param {Phaser.Types.Filters.NormalToolsConfig} config
-     * @returns {Phaser.Filters.NormalTools} The new NormalTools filter controller.
+     * @return {Phaser.Filters.NormalTools} The new NormalTools filter controller.
      */
     addNormalTools: function (config)
     {
@@ -707,7 +707,7 @@ var FilterList = new Class({
      *
      * @param {Phaser.Types.Filters.QuantizeConfig} [config] - The configuration object for the GradientMap effect.
      *
-     * @returns {this} The new Quantize filter controller.
+     * @return {this} The new Quantize filter controller.
      */
     addQuantize: function (config)
     {
@@ -900,7 +900,7 @@ var FilterList = new Class({
      * @param {number} [reveal=0] - Is this a reveal (1) or a fade (0) effect? Reveal shows the input in wiped areas; fade shows the input in unwiped areas.
      * @param {string | Phaser.Textures.Texture} [wipeTexture='__DEFAULT'] - Texture or texture key to use where the input texture is not shown. The default texture is blank. Use another texture for a wipe transition.
      *
-     * @returns {Phaser.Filters.Wipe} - The new Wipe filter instance.
+     * @return {Phaser.Filters.Wipe} - The new Wipe filter instance.
      */
     addWipe: function (wipeWidth, direction, axis, reveal, wipeTexture)
     {

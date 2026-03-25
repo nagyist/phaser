@@ -1200,7 +1200,7 @@ var TextureManager = new Class({
      * @param {number} height - The height of the texture.
      * @param {number} [color=0x000000] - The color of the texture.
      * @param {number} [alpha=0] - The alpha of the texture.
-     * @returns {?Phaser.Textures.Texture} The Texture that was created, or `null` if the key is already in use or the width or height is not positive.
+     * @return {?Phaser.Textures.Texture} The Texture that was created, or `null` if the key is already in use or the width or height is not positive.
      */
     addFlatColor: function (key, width, height, color, alpha)
     {

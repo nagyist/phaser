@@ -110,7 +110,7 @@ var CombineColorMatrix = new Class({
      * @since 4.0.0
      * @param {string | Phaser.Textures.Texture} texture - The texture or texture key to use for the transfer texture.
      *
-     * @returns {this} This filter instance.
+     * @return {this} This filter instance.
      */
     setTexture: function (texture)
     {
@@ -146,7 +146,7 @@ var CombineColorMatrix = new Class({
      * @param {boolean} [brightnessToAlphaInverseSelf] - Whether to determine the base alpha from the base brightness, inverted. This overrides `brightnessToAlphaSelf`.
      * @param {boolean} [brightnessToAlphaInverseTransfer] - Whether to determine the transfer alpha from the transfer brightness, inverted. This overrides `brightnessToAlphaTransfer`.
      *
-     * @returns {this} This filter instance.
+     * @return {this} This filter instance.
      */
     setupAlphaTransfer: function (colorSelf, colorTransfer, brightnessToAlphaSelf, brightnessToAlphaTransfer, brightnessToAlphaInverseSelf, brightnessToAlphaInverseTransfer)
     {

@@ -85,6 +85,9 @@ var FitToRegion = function (item, scaleMode, region, itemCoverage)
             break;
         }
     }
+
+
+    return item;
 };
 
 module.exports = FitToRegion;

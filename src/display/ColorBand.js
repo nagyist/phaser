@@ -166,7 +166,7 @@ var ColorBand = new Class({
      * @since 4.0.0
      * @param {number | string | number[] | Color} [start=0x000000] - The color at the start of the band.
      * @param {number | string | number[] | Color} [end] - The color at the end of the band. If not specified, equals `start`.
-     * @returns {this} This ColorBand.
+     * @return {this} This ColorBand.
      */
     setColors: function (start, end)
     {
@@ -226,7 +226,7 @@ var ColorBand = new Class({
      * @method Phaser.Display.ColorBand#getColor
      * @since 4.0.0
      * @param {number} index - The index at which to get the color, from 0 to 1.
-     * @returns {Phaser.Types.Display.ColorObject} The color at that index.
+     * @return {Phaser.Types.Display.ColorObject} The color at that index.
      */
     getColor: function (index)
     {

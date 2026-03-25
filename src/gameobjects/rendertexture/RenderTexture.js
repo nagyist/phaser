@@ -185,7 +185,7 @@ var RenderTexture = new Class({
      * In Canvas it will resize the underlying canvas element.
      *
      * Both approaches will erase everything currently drawn to the Render Texture.
-     * 
+     *
      * Calling this will then invoke the `setSize` method, setting the internal size of this Game Object
      * to the values given to this method.
      *
@@ -272,7 +272,7 @@ var RenderTexture = new Class({
      * @since 4.0.0
      * @param {'render'|'redraw'|'all'} mode - The render mode to set.
      * @param {boolean} [preserve=false] - Whether to call `preserve(true)` to preserve the current command buffer.
-     * @returns {this} This Render Texture instance.
+     * @return {this} This Render Texture instance.
      */
     setRenderMode: function (mode, preserve)
     {
@@ -526,7 +526,7 @@ var RenderTexture = new Class({
      * @method Phaser.GameObjects.RenderTexture#preserve
      * @since 4.0.0
      * @param {boolean} preserve - Whether to preserve the command buffer after rendering.
-     * @returns {this} This Render Texture instance.
+     * @return {this} This Render Texture instance.
      */
     preserve: function (preserve)
     {
@@ -545,7 +545,7 @@ var RenderTexture = new Class({
      * @method Phaser.GameObjects.RenderTexture#callback
      * @since 4.0.0
      * @param {Function} callback - A callback function to run during the render process.
-     * @returns {this} This Render Texture instance.
+     * @return {this} This Render Texture instance.
      */
     callback: function (callback)
     {

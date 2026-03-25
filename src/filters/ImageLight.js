@@ -165,7 +165,7 @@ var ImageLight = new Class({
      * @method Phaser.Filters.ImageLight#setEnvironmentMap
      * @since 4.0.0
      * @param {string|Phaser.Textures.Texture} texture - The texture to use for the ImageLight effect environment map.
-     * @returns {this} This ImageLight instance.
+     * @return {this} This ImageLight instance.
      */
     setEnvironmentMap: function (texture)
     {
@@ -186,7 +186,7 @@ var ImageLight = new Class({
      * @method Phaser.Filters.ImageLight#setNormalMap
      * @since 4.0.0
      * @param {string|Phaser.Textures.Texture} texture - The texture to use for the ImageLight effect normal map.
-     * @returns {this} This ImageLight instance.
+     * @return {this} This ImageLight instance.
      */
     setNormalMap: function (texture)
     {
@@ -208,7 +208,7 @@ var ImageLight = new Class({
      * @method Phaser.Filters.ImageLight#setNormalMapFromGameObject
      * @since 4.0.0
      * @param {Phaser.GameObjects.GameObject} gameObject - The GameObject to use for the ImageLight effect normal map.
-     * @returns {this} This ImageLight instance.
+     * @return {this} This ImageLight instance.
      */
     setNormalMapFromGameObject: function (gameObject)
     {
@@ -228,7 +228,7 @@ var ImageLight = new Class({
      *
      * @method Phaser.Filters.ImageLight#getModelRotation
      * @since 4.0.0
-     * @returns {number} The rotation to use for the ImageLight effect in radians.
+     * @return {number} The rotation to use for the ImageLight effect in radians.
      */
     getModelRotation: function ()
     {

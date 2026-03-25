@@ -71,7 +71,7 @@ var Vector4 = require('./Vector4');
  * @param {number|number[]} vector - The number or number list to hash. 1 to 4 numbers.
  * @param {number} [algorithm=0] - The algorithm to use. 0 is TRIG. 1 is PCG. 2 is PCG_FLOAT.
  *
- * @returns {number} - A number from 0-1.
+ * @return {number} - A number from 0-1.
  */
 var Hash = function (vector, algorithm)
 {

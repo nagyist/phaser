@@ -647,7 +647,7 @@ var Camera = new Class({
      * @webglonly
      * @since 4.0.0
      * @param {boolean} [forceComposite=false] - If `true`, the view matrix will always be `matrix`. This is typically used when rendering to a framebuffer, so the external matrix is irrelevant.
-     * @returns {Phaser.GameObjects.Components.TransformMatrix} The view matrix of the camera.
+     * @return {Phaser.GameObjects.Components.TransformMatrix} The view matrix of the camera.
      */
     getViewMatrix: function (forceComposite)
     {

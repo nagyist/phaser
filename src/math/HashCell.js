@@ -43,7 +43,7 @@ var Hash = require('./Hash');
  * @param {number|number[]} vector - The input vector to hash. 1 to 4 numbers.
  * @param {Phaser.Types.Math.HashCellConfig} [config] - The configuration of the noise cell field.
  *
- * @returns {number} The hashed cellular noise value, between 0 and 1.
+ * @return {number} The hashed cellular noise value, between 0 and 1.
  */
 var HashCell = function (vector, config)
 {

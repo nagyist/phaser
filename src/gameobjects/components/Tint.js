@@ -167,7 +167,7 @@ var Tint = {
      * @since 4.0.0
      *
      * @param {number} mode - The tint mode to use.
-     * @returns {this} This Game Object instance.
+     * @return {this} This Game Object instance.
      */
     setTintMode: function (mode)
     {

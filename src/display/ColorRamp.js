@@ -143,7 +143,7 @@ var ColorRamp = new Class({
      * @param {Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand | (Phaser.Types.Display.ColorBandConfig | Phaser.Display.ColorBand)[]} bands - The bands to make up this ramp. This can be one entry or an array, and can be configs or existing instances.
      * @param {boolean} [encode=true] - Whether to encode the new ramp data to a data texture for use in shaders.
      *
-     * @returns {this} - This ColorRamp instance.
+     * @return {this} - This ColorRamp instance.
      */
     setBands: function (bands, encode)
     {
@@ -334,7 +334,7 @@ var ColorRamp = new Class({
      * @param {number} end - Override the end of the first band.
      * @param {boolean} purgeZeroLength - Whether to discard bands that now have 0 size.
      * @param {boolean} encode - Whether to reencode the data texture.
-     * @returns {this} - This ColorRamp instance.
+     * @return {this} - This ColorRamp instance.
      */
     fixFit: function (start, end, purgeZeroLength, encode)
     {
@@ -392,7 +392,7 @@ var ColorRamp = new Class({
      * @param {number} steps - The number of bands to create.
      * @param {boolean} [quantize=false] - Whether to quantize the bands to a single color.
      * @param {boolean} [encode=true] - Whether to rebuild the data texture.
-     * @returns {this} This ColorRamp instance.
+     * @return {this} This ColorRamp instance.
      */
     splitBand: function (band, steps, quantize, encode)
     {
@@ -462,7 +462,7 @@ var ColorRamp = new Class({
      *
      * @method Phaser.Display.ColorRamp#getColor
      * @param {number} index - Index of the color to get, from 0 (start) to 1 (end).
-     * @returns {Phaser.Types.Display.ColorObject} The color at that index.
+     * @return {Phaser.Types.Display.ColorObject} The color at that index.
      */
     getColor: function (index)
     {

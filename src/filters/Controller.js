@@ -122,7 +122,7 @@ var Controller = new Class({
      *
      * @method Phaser.Filters.Controller#getPadding
      * @since 4.0.0
-     * @returns {Phaser.Geom.Rectangle} The padding required by this filter.
+     * @return {Phaser.Geom.Rectangle} The padding required by this filter.
      */
     getPadding: function ()
     {
@@ -168,7 +168,7 @@ var Controller = new Class({
      * @method Phaser.Filters.Controller#setActive
      * @since 4.0.0
      * @param {boolean} value - `true` to enable this filter, or `false` to disable it.
-     * @returns {this} This filter instance.
+     * @return {this} This filter instance.
      */
     setActive: function (value)
     {

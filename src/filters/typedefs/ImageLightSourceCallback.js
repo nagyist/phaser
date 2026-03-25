@@ -2,5 +2,5 @@
  * @callback Phaser.Types.Filters.ImageLightSourceCallback
  * @since 4.0.0
  *
- * @returns {number} The rotation to use for the ImageLight effect in radians.
+ * @return {number} The rotation to use for the ImageLight effect in radians.
  */

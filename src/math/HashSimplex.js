@@ -69,7 +69,7 @@
  * @param {number | number[]} vector - The input vector to hash. 1 to 3 numbers.
  * @param {Phaser.Types.Math.HashSimplexConfig} [config] - The configuration of the noise field.
  *
- * @returns {number} A noise value in the range -1 to 1.
+ * @return {number} A noise value in the range -1 to 1.
  */
 var HashSimplex = function (vector, config)
 {

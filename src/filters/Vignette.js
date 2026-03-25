@@ -126,7 +126,7 @@ var Vignette = new Class({
      * @method Phaser.Filters.Vignette#setColor
      * @since 4.0.0
      * @param {number | string | Phaser.Types.Display.InputColorObject | Phaser.Display.Color} color - The color to set. Note that a Color object will be copied, not attached.
-     * @returns {this} This filter instance.
+     * @return {this} This filter instance.
      */
     setColor: function (color)
     {

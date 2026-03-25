@@ -232,7 +232,7 @@ if (typeof WEBGL_RENDERER)
          * @method Phaser.GameObjects.Components.Filters#enableFilters
          * @since 4.0.0
          * @webglOnly
-         * @returns {this}
+         * @return {this}
          */
         enableFilters: function ()
         {
@@ -453,7 +453,7 @@ if (typeof WEBGL_RENDERER)
          * @method Phaser.GameObjects.Components.Filters#focusFilters
          * @webglOnly
          * @since 4.0.0
-         * @returns {this}
+         * @return {this}
          */
         focusFilters: function ()
         {
@@ -516,7 +516,7 @@ if (typeof WEBGL_RENDERER)
          * @webglOnly
          * @since 4.0.0
          * @param {Phaser.Cameras.Scene2D.Camera} camera - The camera to focus on.
-         * @returns {this}
+         * @return {this}
          */
         focusFiltersOnCamera: function (camera)
         {
@@ -556,7 +556,7 @@ if (typeof WEBGL_RENDERER)
          * @param {number} [y] - The y-coordinate of the focus point, relative to the filter size. Default is the center.
          * @param {number} [width] - The width of the focus area. Default is the filter width.
          * @param {number} [height] - The height of the focus area. Default is the filter height.
-         * @returns {this}
+         * @return {this}
          */
         focusFiltersOverride: function (x, y, width, height)
         {
@@ -617,7 +617,7 @@ if (typeof WEBGL_RENDERER)
          * @since 4.0.0
          * @param {number} width - Base width of the filter texture.
          * @param {number} height - Base height of the filter texture.
-         * @returns {this}
+         * @return {this}
          */
         setFilterSize: function (width, height)
         {
@@ -643,7 +643,7 @@ if (typeof WEBGL_RENDERER)
          * @webglOnly
          * @since 4.0.0
          * @param {boolean} value - Whether filters should be updated every frame.
-         * @returns {this}
+         * @return {this}
          */
         setFiltersAutoFocus: function (value)
         {
@@ -660,7 +660,7 @@ if (typeof WEBGL_RENDERER)
          * @webglOnly
          * @since 4.0.0
          * @param {boolean} value - Whether the filters should focus on the context.
-         * @returns {this}
+         * @return {this}
          */
         setFiltersFocusContext: function (value)
         {
@@ -677,7 +677,7 @@ if (typeof WEBGL_RENDERER)
          * @webglOnly
          * @since 4.0.0
          * @param {boolean} value - Whether the object should always draw to a framebuffer, even if there are no active filters.
-         * @returns {this}
+         * @return {this}
          */
         setFiltersForceComposite: function (value)
         {
@@ -694,7 +694,7 @@ if (typeof WEBGL_RENDERER)
          * @webglOnly
          * @since 4.0.0
          * @param {boolean} value - Whether the filters should be rendered.
-         * @returns {this}
+         * @return {this}
          */
         setRenderFilters: function (value)
         {

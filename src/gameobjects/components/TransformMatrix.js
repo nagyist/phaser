@@ -689,7 +689,7 @@ var TransformMatrix = new Class({
      * @param {number} scrollFactorX - The horizontal scroll factor to apply.
      * @param {number} scrollFactorY - The vertical scroll factor to apply.
      *
-     * @returns {this} This TransformMatrix.
+     * @return {this} This TransformMatrix.
      */
     copyWithScrollFactorFrom: function (src, scrollX, scrollY, scrollFactorX, scrollFactorY)
     {
@@ -705,7 +705,7 @@ var TransformMatrix = new Class({
 
         matrix[4] = src.a * sx + src.c * sy + src.e;
         matrix[5] = src.b * sx + src.d * sy + src.f;
-        
+
         return this;
     },
 

@@ -130,7 +130,7 @@ var Wipe = new Class({
      * @method Phaser.Filters.Wipe#setWipeWidth
      * @since 4.0.0
      * @param {number} width - The width of the wipe effect. This value is normalized in the range 0 to 1.
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setWipeWidth: function (width)
     {
@@ -147,7 +147,7 @@ var Wipe = new Class({
      *
      * @method Phaser.Filters.Wipe#setLeftToRight
      * @since 4.0.0
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setLeftToRight: function ()
     {
@@ -161,7 +161,7 @@ var Wipe = new Class({
      *
      * @method Phaser.Filters.Wipe#setRightToLeft
      * @since 4.0.0
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setRightToLeft: function ()
     {
@@ -175,7 +175,7 @@ var Wipe = new Class({
      *
      * @method Phaser.Filters.Wipe#setTopToBottom
      * @since 4.0.0
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setTopToBottom: function ()
     {
@@ -189,7 +189,7 @@ var Wipe = new Class({
      *
      * @method Phaser.Filters.Wipe#setBottomToTop
      * @since 4.0.0
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setBottomToTop: function ()
     {
@@ -203,7 +203,7 @@ var Wipe = new Class({
      *
      * @method Phaser.Filters.Wipe#setWipeEffect
      * @since 4.0.0
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setWipeEffect: function ()
     {
@@ -217,7 +217,7 @@ var Wipe = new Class({
      *
      * @method Phaser.Filters.Wipe#setRevealEffect
      * @since 4.0.0
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setRevealEffect: function ()
     {
@@ -235,7 +235,7 @@ var Wipe = new Class({
      * @method Phaser.Filters.Wipe#setTexture
      * @since 4.0.0
      * @param {string | Phaser.Textures.Texture} [texture='__DEFAULT'] - Texture or texture key to use for regions where the input is removed.
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setTexture: function (texture)
     {
@@ -260,7 +260,7 @@ var Wipe = new Class({
      * @method Phaser.Filters.Wipe#setProgress
      * @since 4.0.0
      * @param {number} value - Progress, normalized to the range 0-1.
-     * @returns {this} - This filter instance.
+     * @return {this} - This filter instance.
      */
     setProgress: function (value)
     {

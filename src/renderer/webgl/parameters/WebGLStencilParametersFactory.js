@@ -28,7 +28,7 @@ var WebGLStencilParametersFactory = {
     * @param {GLenum} [opZpass=GL_KEEP] - The operation to perform if the stencil test passes and the depth test passes or is disabled.
     * @param {GLint} [clear=0] - The value to clear the stencil buffer to.
     *
-    * @returns {Phaser.Types.Renderer.WebGL.WebGLStencilParameters} The created WebGLStencilParameters.
+    * @return {Phaser.Types.Renderer.WebGL.WebGLStencilParameters} The created WebGLStencilParameters.
     */
     create: function (renderer, enabled, func, funcRef, funcMask, opFail, opZfail, opZpass, clear)
     {

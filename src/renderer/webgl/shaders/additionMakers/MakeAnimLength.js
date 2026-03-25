@@ -11,7 +11,7 @@
  * @function Phaser.Renderer.WebGL.ShaderAdditionMakers.MakeAnimLength
  * @since 4.0.0
  * @param {boolean} [disable=false] - Whether to disable the shader addition on creation.
- * @returns {Phaser.Types.Renderer.WebGL.ShaderAdditionConfig} The shader addition configuration.
+ * @return {Phaser.Types.Renderer.WebGL.ShaderAdditionConfig} The shader addition configuration.
  */
 var MakeAnimLength = function (maxAnims, disable)
 {

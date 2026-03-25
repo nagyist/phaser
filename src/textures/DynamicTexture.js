@@ -1103,7 +1103,7 @@ var DynamicTexture = new Class({
      * @method Phaser.Textures.DynamicTexture#preserve
      * @since 4.0.0
      * @param {boolean} preserve - Whether to preserve the command buffer after rendering.
-     * @returns {this} This Dynamic Texture instance.
+     * @return {this} This Dynamic Texture instance.
      */
     preserve: function (preserve)
     {
@@ -1122,7 +1122,7 @@ var DynamicTexture = new Class({
      * @method Phaser.Textures.DynamicTexture#callback
      * @since 4.0.0
      * @param {Function} callback - A callback function to run during the render process.
-     * @returns {this} This Dynamic Texture instance.
+     * @return {this} This Dynamic Texture instance.
      */
     callback: function (callback)
     {

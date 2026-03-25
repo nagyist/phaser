@@ -436,7 +436,7 @@ var SpriteGPULayer = new Class({
      * as a 'stride' to move through the buffer.
      *
      * @method Phaser.GameObjects.SpriteGPULayer#getDataByteSize
-     * @returns {number} The number of bytes used for each member.
+     * @return {number} The number of bytes used for each member.
      */
     getDataByteSize: function ()
     {
@@ -487,7 +487,7 @@ var SpriteGPULayer = new Class({
      * @method Phaser.GameObjects.SpriteGPULayer#setAnimations
      * @since 4.0.0
      * @param {Phaser.Animations.Animation[]|Phaser.Types.GameObjects.SpriteGPULayer.SetAnimation[]} animations - An array of animations to set.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     setAnimations: function (animations)
     {
@@ -644,7 +644,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @param {number} count - The new number of members in the SpriteGPULayer.
      * @param {boolean} [clear=false] - Whether to clear the buffer.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     resize: function (count, clear)
     {
@@ -737,7 +737,7 @@ var SpriteGPULayer = new Class({
      * @method Phaser.GameObjects.SpriteGPULayer#addData
      * @since 4.0.0
      * @param {Float32Array} member - The raw data to add to the buffer.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     addData: function (member)
     {
@@ -767,7 +767,7 @@ var SpriteGPULayer = new Class({
      * @method Phaser.GameObjects.SpriteGPULayer#addMember
      * @since 4.0.0
      * @param {Partial<Phaser.Types.GameObjects.SpriteGPULayer.Member>} [member] - The member to add to the SpriteGPULayer.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     addMember: function (member)
     {
@@ -948,7 +948,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @param {number} index - The index of the member to edit.
      * @param {Partial<Phaser.Types.GameObjects.SpriteGPULayer.Member>} member - The new member data.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     editMember: function (index, member)
     {
@@ -1037,7 +1037,7 @@ var SpriteGPULayer = new Class({
      * @method Phaser.GameObjects.SpriteGPULayer#getMember
      * @since 4.0.0
      * @param {number} index - The index of the member to get.
-     * @returns {?Phaser.Types.GameObjects.SpriteGPULayer.Member} The member data, or null if the index is out of bounds.
+     * @return {?Phaser.Types.GameObjects.SpriteGPULayer.Member} The member data, or null if the index is out of bounds.
      */
     getMember: function (index)
     {
@@ -1188,7 +1188,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @param {number} index - The index of the member to get.
      * @param {Uint32Array} [out] - An optional array to copy the data to. If not provided, `this.nextMember` will be populated, and `nextMemberU32` will be returned.
-     * @returns {?Uint32Array} The member data, or null if the index is out of bounds.
+     * @return {?Uint32Array} The member data, or null if the index is out of bounds.
      */
     getMemberData: function (index, out)
     {
@@ -1226,7 +1226,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @param {number} index - The index of the member to remove.
      * @param {number} [count=1] - The number of members to remove, default 1.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     removeMembers: function (index, count)
     {
@@ -1272,7 +1272,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @param {number} index - The index at which to insert members.
      * @param {Phaser.Types.GameObjects.SpriteGPULayer.Member|Phaser.Types.GameObjects.SpriteGPULayer.Member[]} members - The members to insert.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     insertMembers: function (index, members)
     {
@@ -1348,7 +1348,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @param {number} index - The index at which to insert members.
      * @param {Uint32Array} data - The members to insert.
-     * @returns {this} This SpriteGPULayer object.
+     * @return {this} This SpriteGPULayer object.
      */
     insertMembersData: function (index, data)
     {
@@ -1515,7 +1515,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @private
      * @param {number} index - The index where the animation begins in the buffer.
-     * @returns {number|Phaser.Types.GameObjects.SpriteGPULayer.MemberAnimation} The animation values.
+     * @return {number|Phaser.Types.GameObjects.SpriteGPULayer.MemberAnimation} The animation values.
      */
     _getAnimatedValue: function (index)
     {
@@ -1596,7 +1596,7 @@ var SpriteGPULayer = new Class({
      * @since 4.0.0
      * @param {string} name - The name of the animation to enable or disable.
      * @param {boolean} enabled - Whether to enable or disable the animation.
-     * @returns {this} This SpriteGPULayer object
+     * @return {this} This SpriteGPULayer object
      */
     setAnimationEnabled: function (name, enabled)
     {

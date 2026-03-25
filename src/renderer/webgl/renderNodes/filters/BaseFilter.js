@@ -38,7 +38,7 @@ var BaseFilter = new Class({
      * @param {Phaser.Renderer.WebGL.DrawingContext} inputDrawingContext - The drawing context containing the input texture. This is either the initial render, or the output of the previous filter. This will be released during the run process, and can no longer be used.
      * @param {Phaser.Renderer.WebGL.DrawingContext} [outputDrawingContext] - The drawing context where the output texture will be drawn. If not specified, a new drawing context will be generated. Generally, this parameter is used for the last filter in a chain, so the output texture is drawn to the main framebuffer.
      * @param {Phaser.Geom.Rectangle} [padding] - The padding to add to the input texture to create the output texture. If not specified, the controller is used to get the padding. This should be undefined for internal filters, so the controller will expand textures as needed; and defined as the negative padding of the previous filter for external filters, so the texture will shrink to the correct size.
-     * @returns {Phaser.Renderer.WebGL.DrawingContext} The drawing context containing the output texture.
+     * @return {Phaser.Renderer.WebGL.DrawingContext} The drawing context containing the output texture.
      */
     run: function (controller, inputDrawingContext, outputDrawingContext, padding)
     {

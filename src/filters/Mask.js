@@ -244,7 +244,7 @@ var Mask = new Class({
      * @method Phaser.Filters.Mask#setGameObject
      * @since 4.0.0
      * @param {Phaser.GameObjects.GameObject} gameObject - The GameObject to use for the mask.
-     * @returns {this} This Filter Controller.
+     * @return {this} This Filter Controller.
      */
     setGameObject: function (gameObject)
     {
@@ -265,7 +265,7 @@ var Mask = new Class({
      * @method Phaser.Filters.Mask#setTexture
      * @since 4.0.0
      * @param {string} [texture='__WHITE'] - The unique string-based key of the texture to use for the mask, which must exist in the Texture Manager.
-     * @returns {this} This Filter Controller.
+     * @return {this} This Filter Controller.
      */
     setTexture: function (texture)
     {

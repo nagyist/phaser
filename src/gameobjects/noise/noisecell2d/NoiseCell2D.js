@@ -375,7 +375,7 @@ var NoiseCell2D = new Class({
      * @since 4.0.0
      * @param {number | string | number[] | Color} [start=0x000000] - The color in the middle of the cells.
      * @param {number | string | number[] | Color} [end=0xffffff] - The color at the edge of the cells.
-     * @returns {this} This game object.
+     * @return {this} This game object.
      */
     setNoiseColor: function (start, end)
     {
@@ -434,7 +434,7 @@ var NoiseCell2D = new Class({
      *
      * @method Phaser.GameObjects.NoiseCell2D#randomizeNoiseSeed
      * @since 4.0.0
-     * @returns {this} This game object.
+     * @return {this} This game object.
      */
     randomizeNoiseSeed: function ()
     {
@@ -453,7 +453,7 @@ var NoiseCell2D = new Class({
      *
      * @method Phaser.GameObjects.NoiseCell2D#wrapNoise
      * @since 4.0.0
-     * @returns {this} This game object.
+     * @return {this} This game object.
      */
     wrapNoise: function ()
     {

@@ -1153,7 +1153,7 @@ var BaseCamera = new Class({
      *
      * @param {boolean} value - The value to set the property to.
      *
-     * @returns {this} This Camera instance.
+     * @return {this} This Camera instance.
      */
     setForceComposite: function (value)
     {

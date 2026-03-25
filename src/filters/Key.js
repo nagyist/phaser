@@ -114,7 +114,7 @@ var Key = new Class({
      * @method Phaser.Filters.Key#setAlpha
      * @since 4.0.0
      * @param {number} alpha
-     * @returns {this} This Filter Controller.
+     * @return {this} This Filter Controller.
      */
     setAlpha: function (alpha)
     {
@@ -130,7 +130,7 @@ var Key = new Class({
      * @method Phaser.Filters.Key#setColor
      * @since 4.0.0
      * @param {number | string | number[] | Phaser.Display.Color} color - The color to use for the key. It can be a hexcode number or string, an array of 3 numbers between 0 and 1, or a Color object.
-     * @returns {this} This Filter Controller.
+     * @return {this} This Filter Controller.
      */
     setColor: function (color)
     {

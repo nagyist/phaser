@@ -270,7 +270,7 @@ var ProgramManager = new Class({
      * @method Phaser.Renderer.WebGL.ProgramManager#getAddition
      * @since 4.0.0
      * @param {string} name - The name to find.
-     * @returns {?Phaser.Types.Renderer.WebGL.ShaderAdditionConfig} The addition, or `null` if it was not found.
+     * @return {?Phaser.Types.Renderer.WebGL.ShaderAdditionConfig} The addition, or `null` if it was not found.
      */
     getAddition: function (name)
     {
@@ -293,7 +293,7 @@ var ProgramManager = new Class({
      * @method Phaser.Renderer.WebGL.ProgramManager#getAdditionsByTag
      * @since 4.0.0
      * @param {string} tag - The tag to filter by.
-     * @returns {Phaser.Types.Renderer.WebGL.ShaderAdditionConfig[]} The shader additions with the tag.
+     * @return {Phaser.Types.Renderer.WebGL.ShaderAdditionConfig[]} The shader additions with the tag.
      */
     getAdditionsByTag: function (tag)
     {
@@ -313,7 +313,7 @@ var ProgramManager = new Class({
      * @method Phaser.Renderer.WebGL.ProgramManager#getAdditionIndex
      * @since 4.0.0
      * @param {string} name - The name to find.
-     * @returns {number} The index of the addition, or `-1` if it was not found.
+     * @return {number} The index of the addition, or `-1` if it was not found.
      */
     getAdditionIndex: function (name)
     {

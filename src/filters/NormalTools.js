@@ -181,7 +181,7 @@ var NormalTools = new Class({
      *
      * @method Phaser.Filters.NormalTools#getRotation
      * @since 4.0.0
-     * @returns {number} The rotation in radians.
+     * @return {number} The rotation in radians.
      */
     getRotation: function ()
     {
@@ -210,7 +210,7 @@ var NormalTools = new Class({
      * @method Phaser.Filters.NormalTools#setRotation
      * @since 4.0.0
      * @param {number} rotation - The rotation in radians.
-     * @returns {this} This NormalTools instance.
+     * @return {this} This NormalTools instance.
      */
     setRotation: function (rotation)
     {
@@ -226,7 +226,7 @@ var NormalTools = new Class({
      *
      * @method Phaser.Filters.NormalTools#updateRotation
      * @since 4.0.0
-     * @returns {this} This NormalTools instance.
+     * @return {this} This NormalTools instance.
      */
     updateRotation: function ()
     {
