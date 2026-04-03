@@ -12,7 +12,7 @@
  * @function Phaser.Display.Color.IntegerToRGB
  * @since 3.0.0
  *
- * @param {number} input - The color value to convert into a Color object.
+ * @param {number} color - The color value to convert into a Color object.
  *
  * @return {Phaser.Types.Display.ColorObject} An object with the red, green and blue values set in the r, g and b properties.
  */

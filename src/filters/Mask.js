@@ -280,6 +280,15 @@ var Mask = new Class({
         return this;
     },
 
+    /**
+     * Destroys this filter, releasing all references and resources.
+     *
+     * If a dynamic texture was created for a mask GameObject,
+     * it will also be destroyed.
+     *
+     * @method Phaser.Filters.Mask#destroy
+     * @since 4.0.0
+     */
     destroy: function ()
     {
         if (this._dynamicTexture)

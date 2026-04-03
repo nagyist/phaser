@@ -89,7 +89,7 @@ var GradientMap = new Class({
          * @name Phaser.Filters.GradientMap#color
          * @type {number[]}
          * @since 4.0.0
-         * @default [ 0.3, 0.6, 0.1, 0 ]
+         * @default [ 0, 0, 0, 0 ]
          */
         this.color = [ 0, 0, 0, 0 ];
         if (config.color)

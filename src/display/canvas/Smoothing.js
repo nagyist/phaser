@@ -41,7 +41,7 @@ var Smoothing = function ()
     };
 
     /**
-     * Sets the Image Smoothing property on the given context. Set to false to disable image smoothing.
+     * Enables the Image Smoothing property on the given context.
      * By default browsers have image smoothing enabled, which isn't always what you visually want, especially
      * when using pixel art in a game. Note that this sets the property on the context itself, so that any image
      * drawn to the context will be affected. This sets the property across all current browsers but support is
@@ -70,7 +70,7 @@ var Smoothing = function ()
     };
 
     /**
-     * Sets the Image Smoothing property on the given context. Set to false to disable image smoothing.
+     * Disables the Image Smoothing property on the given context.
      * By default browsers have image smoothing enabled, which isn't always what you visually want, especially
      * when using pixel art in a game. Note that this sets the property on the context itself, so that any image
      * drawn to the context will be affected. This sets the property across all current browsers but support is

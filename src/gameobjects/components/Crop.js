@@ -5,7 +5,7 @@
  */
 
 /**
- * Provides methods used for getting and setting the texture of a Game Object.
+ * Provides methods used for getting and setting the crop region of a Game Object.
  *
  * @namespace Phaser.GameObjects.Components.Crop
  * @since 3.12.0
@@ -50,7 +50,7 @@ var Crop = {
      * Cropping a Game Object does not change its size, dimensions, physics body or hit area, it just
      * changes what is shown when rendered.
      *
-     * The crop size as well as coordinates can not exceed the the size of the texture frame.
+     * The crop size as well as coordinates can not exceed the size of the texture frame.
      *
      * The crop coordinates are relative to the texture frame, not the Game Object, meaning 0 x 0 is the top-left.
      *

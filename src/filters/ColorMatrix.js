@@ -57,6 +57,12 @@ var ColorMatrix = new Class({
         this.colorMatrix = new DisplayColorMatrix();
     },
 
+    /**
+     * Destroys this filter, releasing all references and resources.
+     *
+     * @method Phaser.Filters.ColorMatrix#destroy
+     * @since 4.0.0
+     */
     destroy: function ()
     {
         this.colorMatrix = null;

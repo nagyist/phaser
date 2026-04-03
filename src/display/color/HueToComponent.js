@@ -11,9 +11,9 @@
  * @function Phaser.Display.Color.HueToComponent
  * @since 3.0.0
  *
- * @param {number} p
- * @param {number} q
- * @param {number} t
+ * @param {number} p - The first intermediate value derived from the lightness during HSL to RGB conversion.
+ * @param {number} q - The second intermediate value derived from the lightness and saturation during HSL to RGB conversion.
+ * @param {number} t - The hue offset for the color channel being calculated (red, green, or blue).
  *
  * @return {number} The combined color value.
  */

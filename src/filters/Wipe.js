@@ -24,7 +24,7 @@ var Texture = require('../textures/Texture');
  * * left to right: direction 0, axis 0
  * * right to left: direction 1, axis 0
  * * top to bottom: direction 1, axis 1
- * * bottom to top: direction 1, axis 0
+ * * bottom to top: direction 0, axis 1
  *
  * It is up to you to set the `progress` value yourself, e.g. via a Tween, in order to transition the effect.
  *

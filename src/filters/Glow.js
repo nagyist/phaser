@@ -213,6 +213,16 @@ var Glow = new Class({
         }
     },
 
+    /**
+     * Returns the amount of extra padding, in pixels, that this filter requires when rendering.
+     * The padding accounts for the glow effect extending beyond the original bounds
+     * of the filtered Game Object.
+     *
+     * @method Phaser.Filters.Glow#getPadding
+     * @since 4.0.0
+     *
+     * @return {Phaser.Geom.Rectangle} The padding Rectangle.
+     */
     getPadding: function ()
     {
         var override = this.paddingOverride;

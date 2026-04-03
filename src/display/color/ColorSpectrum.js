@@ -13,7 +13,7 @@ var GetColor = require('./GetColor');
  *
  * By default this function will return an array with 1024 elements in.
  *
- * However, you can reduce this to a smaller quantity if needed, by specitying the `limit` parameter.
+ * However, you can reduce this to a smaller quantity if needed, by specifying the `limit` parameter.
  *
  * @function Phaser.Display.Color.ColorSpectrum
  * @since 3.50.0

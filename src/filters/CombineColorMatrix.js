@@ -166,6 +166,12 @@ var CombineColorMatrix = new Class({
         else if (brightnessToAlphaTransfer) { t.brightnessToAlpha(true); }
     },
 
+    /**
+     * Destroys this filter, releasing all references and resources.
+     *
+     * @method Phaser.Filters.CombineColorMatrix#destroy
+     * @since 4.0.0
+     */
     destroy: function ()
     {
         this.colorMatrixSelf = null;

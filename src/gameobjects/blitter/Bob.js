@@ -296,7 +296,7 @@ var Bob = new Class({
      * @since 3.0.0
      *
      * @param {boolean} x - The horizontal flipped state. `false` for no flip, or `true` to be flipped.
-     * @param {boolean} y - The horizontal flipped state. `false` for no flip, or `true` to be flipped.
+     * @param {boolean} y - The vertical flipped state. `false` for no flip, or `true` to be flipped.
      *
      * @return {this} This Bob Game Object.
      */

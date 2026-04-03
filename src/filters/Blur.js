@@ -167,6 +167,16 @@ var Blur = new Class({
 
     },
 
+    /**
+     * Returns the amount of extra padding, in pixels, that this filter requires when rendering.
+     * This accounts for the blur radius extending beyond the original bounds of the
+     * filtered Game Object.
+     *
+     * @method Phaser.Filters.Blur#getPadding
+     * @since 4.0.0
+     *
+     * @return {Phaser.Geom.Rectangle} The padding Rectangle.
+     */
     getPadding: function ()
     {
         var override = this.paddingOverride;

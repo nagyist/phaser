@@ -141,6 +141,16 @@ var Bokeh = new Class({
         this.strength = strength;
     },
 
+    /**
+     * Returns the amount of extra padding, in pixels, that this filter requires when rendering.
+     * The padding accounts for the bokeh effect extending beyond the original bounds
+     * of the filtered Game Object.
+     *
+     * @method Phaser.Filters.Bokeh#getPadding
+     * @since 4.0.0
+     *
+     * @return {Phaser.Geom.Rectangle} The padding Rectangle.
+     */
     getPadding: function ()
     {
         var override = this.paddingOverride;

@@ -193,7 +193,7 @@ var Tint = {
 
     /**
      * The tint value being applied to the whole of the Game Object.
-     * Return `tintTopLeft` when read this tint property.
+     * Returns `tintTopLeft` when this property is read.
      *
      * @name Phaser.GameObjects.Components.Tint#tint
      * @type {number}
