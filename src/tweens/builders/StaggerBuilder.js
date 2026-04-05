@@ -47,7 +47,7 @@ var MATH_CONST = require('../../math/const');
  * @param {(number|number[])} value - The amount to stagger by, or an array containing two elements representing the min and max values to stagger between.
  * @param {Phaser.Types.Tweens.StaggerConfig} [options] - A Stagger Configuration object.
  *
- * @return {function} The stagger function.
+ * @return {function} A stagger function that, when invoked by the Tween system for each target, calculates and returns the staggered property value for that target based on its index, the total number of targets, and the stagger configuration provided.
  */
 var StaggerBuilder = function (value, options)
 {

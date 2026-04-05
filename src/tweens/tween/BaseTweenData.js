@@ -27,9 +27,9 @@ var TWEEN_CONST = require('./const');
  * @param {function} delay - Function that returns the time in milliseconds before tween will start.
  * @param {number} duration - The duration of the tween in milliseconds.
  * @param {boolean} yoyo - Determines whether the tween should return back to its start value after hold has expired.
- * @param {number} hold - Function that returns the time in milliseconds the tween will pause before repeating or returning to its starting value if yoyo is set to true.
- * @param {number} repeat - Function that returns the number of times to repeat the tween. The tween will always run once regardless, so a repeat value of '1' will play the tween twice.
- * @param {number} repeatDelay - Function that returns the time in milliseconds before the repeat will start.
+ * @param {number} hold - The time in milliseconds the tween will pause before repeating or returning to its starting value if yoyo is set to true.
+ * @param {number} repeat - The number of times to repeat the tween. The tween will always run once regardless, so a repeat value of '1' will play the tween twice.
+ * @param {number} repeatDelay - The time in milliseconds before the repeat will start.
  * @param {boolean} flipX - Should toggleFlipX be called when yoyo or repeat happens?
  * @param {boolean} flipY - Should toggleFlipY be called when yoyo or repeat happens?
  */
