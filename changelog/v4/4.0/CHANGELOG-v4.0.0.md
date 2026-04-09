@@ -26,7 +26,7 @@ For a step-by-step guide on updating your v3 project, see the [Migration Guide](
     - [Geometry: Point Replaced by Vector2](#geometry-point-replaced-by-vector2)
     - [Math Constants](#math-constants)
     - [Data Structures](#data-structures)
-    - [Removed Game Objects](#removed-game-objects)
+    - [Removed Mesh Game Object](#removed-mesh-gameobject)
     - [Removed Plugins, Entry Points and Polyfills](#removed-plugins-entry-points-and-polyfills)
     - [Other Breaking Changes](#other-breaking-changes)
 2. [New Features](#new-features)
@@ -257,9 +257,15 @@ The `Geom.Point` class and all related functions have been removed. All function
 - `Phaser.Struct.Set` has been replaced with a native JavaScript `Set`. Methods like `iterateLocal` are gone. Use standard `Set` methods instead.
 - `Phaser.Struct.Map` has been replaced with a native JavaScript `Map`. Methods like `contains` and `setAll` are gone. Use standard `Map` methods instead.
 
-### Removed Game Objects
+### Removed Mesh Game Object
 
-- `Mesh` and `Plane` have been removed. These were limited 3D implementations; proper 3D support is planned for the future.
+We have removed the ability for Phaser v4 to load Wavefront OBJ files and render them via the very limited Mesh Game Object. Proper 3D support is planned for the future. As a result, the following has been removed:
+
+- The `Mesh` Game Object.
+- The `Plane` Game Object.
+- The `OBJ` File Type Loader.
+- All Mesh related geometry files, previously in the `geom/mesh` folder, including: `Face`, `GenerateGridVerts`, `GenerateObjVerts`, `ParseObj`, `ParseObjMaterial`, `RotateFace` and `Vertex`.
+- The `obj` global BaseCache entry.
 
 ### Removed Plugins, Entry Points and Polyfills
 
