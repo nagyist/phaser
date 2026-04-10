@@ -126,7 +126,7 @@ var ImageLight = new Class({
          * The color factor to apply to the ImageLight effect. This multiplies the intensity of the light in each color channel. Use values above 1 to substitute for high dynamic range lighting.
          *
          * @name Phaser.Filters.ImageLight#colorFactor
-         * @type {[number, number, number]}
+         * @type {number[]}
          * @since 4.0.0
          */
         this.colorFactor = config.colorFactor || [ 1, 1, 1 ];
